@@ -1,0 +1,4 @@
+/* find better file format for this
+should contain: which flags on each page were tripped
+etc
+*/
