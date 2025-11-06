@@ -1,0 +1,26 @@
+{
+  "home": {
+    "title": "THE FORUMS",
+    "template": "page",
+    "content": {
+      "body": "<div class='button-container'>\n            <button id='newGame'>New Game</button>\n            <button id='loadGame'>Load Game</button>\n            <button id='settings'>Settings</button>\n            <button id='exitGame'>Exit</button>\n        </div>\n      "
+    }
+  },
+  "test-level": {
+    "title": "Test Level: CoolFanPage",
+    "template": "blog",
+    "content": {
+      "intro": "Welcome to CoolFanPage.net — the ultimate tribute to Hypnospace!",
+      "posts": [
+        {
+          "title": "Why Hypnospace Rules",
+          "body": "Because it’s the only place where dreams become downloads."
+        },
+        {
+          "title": "Secret Tip",
+          "body": "Look for hidden links in the source code!"
+        }
+      ]
+    }
+  }
+}
