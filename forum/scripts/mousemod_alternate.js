@@ -1,5 +1,6 @@
 
 /* ============================================================
+(figma version, works even if very chaotic)
     UNIVERSAL MOUSE TOOLS CONTROLLER
     Modes:
 normal : default browser behavior
