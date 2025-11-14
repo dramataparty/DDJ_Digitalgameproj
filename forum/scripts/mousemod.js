@@ -21,9 +21,7 @@
   let offsetX = 0;
   let offsetY = 0;
 
-  /* ============================================================
-      CREATE BROWSER-EXTENSION STYLE TOOL DROPDOWN
-     ============================================================ */
+
   function createToolsMenu() {
     const menu = document.createElement("div");
     menu.id = "mouse-tools-menu";
