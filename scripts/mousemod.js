@@ -5,13 +5,14 @@
     - drag   : drag ANY element
     - hammer : push element deeper (lower z-index)
     - pliers : pull element forward (higher z-index)
+    possible extra tools for extra levels:
+    - flashlight (increase gamma to reveal hidden elements)
+    - scissors (cut element apart into pieces)
+    - staple gun (attack cut pieces back together)
 
     Drop this file into ANY PHP / HTML project:
     <script src="mouseTools.js"></script>
 
-    No dependencies
-    No libraries
-    Pure vanilla JS
    ============================================================ */
 
 (function () {
@@ -27,49 +28,86 @@
     const menu = document.createElement("div");
     menu.id = "mouse-tools-menu";
     menu.style.position = "fixed";
-    menu.style.top = "12px";
-    menu.style.right = "12px";
+    menu.style.bottom = "20px";   // ⬅ bottom-right
+    menu.style.right = "20px";
     menu.style.zIndex = "999999";
     menu.style.fontFamily = "monospace";
     menu.style.color = "#0f0";
 
+    menu.style.pointerEvents = "auto";
+
     menu.innerHTML = `
-      <details style="
-        width: 180px;
-        background:#111;
-        border:1px solid #0f0;
-        box-shadow:0 0 6px #0f0;
-      ">
-        <summary style="
-          cursor:pointer;
-          padding:8px;
-          font-weight:bold;
-          display:flex;
-          justify-content:space-between;
-          align-items:center;
-          list-style:none;
-        ">
-          🛠️ Tools
-          <span style="opacity:0.6;font-size:10px;">▼</span>
-        </summary>
-
-        <div style="border-top:1px solid #0f0;">
-          <button data-mode="normal"  class="tool-btn">🖱️ Normal Mode</button>
-          <button data-mode="drag"    class="tool-btn">✋ Drag Mode</button>
-          <button data-mode="hammer"  class="tool-btn">🔨 Hammer (Push)</button>
-          <button data-mode="pliers"  class="tool-btn">🔧 Pliers (Pull)</button>
-        </div>
-      </details>
-
-      <div id="mouse-tools-status" style="
-        margin-top:6px;
+      <div style="
+        width: 220px;
         background:#000;
-        border:1px solid #0f0;
-        padding:4px;
-        font-size:12px;
-        text-align:center;
+        border:2px solid #0f0;
+        border-radius:8px;
+        box-shadow:0 0 12px #0f0;
+        padding:10px;
       ">
-        Active Mode: normal
+        <div style="
+          font-size:16px;
+          font-weight:bold;
+          margin-bottom:8px;
+          text-align:center;
+          text-shadow:0 0 6px #0f0;
+        ">
+          🛠️ Mouse Tools
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <button data-mode="normal" class="tool-btn" style="
+            padding:10px;
+            font-size:14px;
+            background:#030;
+            border:1px solid #0f0;
+            color:#0f0;
+            cursor:pointer;
+            border-radius:4px;
+          ">🖱️ Normal Mode</button>
+
+          <button data-mode="drag" class="tool-btn" style="
+            padding:10px;
+            font-size:14px;
+            background:#030;
+            border:1px solid #0f0;
+            color:#0f0;
+            cursor:pointer;
+            border-radius:4px;
+          ">✋ Drag Mode</button>
+
+          <button data-mode="hammer" class="tool-btn" style="
+            padding:10px;
+            font-size:14px;
+            background:#300;
+            border:1px solid #f00;
+            color:#f00;
+            cursor:pointer;
+            border-radius:4px;
+          ">🔨 Hammer (Push)</button>
+
+          <button data-mode="pliers" class="tool-btn" style="
+            padding:10px;
+            font-size:14px;
+            background:#003;
+            border:1px solid #09f;
+            color:#09f;
+            cursor:pointer;
+            border-radius:4px;
+          ">🔧 Pliers (Pull)</button>
+        </div>
+
+        <div id="mouse-tools-status" style="
+          margin-top:12px;
+          background:#020;
+          border:1px solid #0f0;
+          padding:6px;
+          font-size:13px;
+          text-align:center;
+          border-radius:4px;
+        ">
+          Active Mode: normal
+        </div>
       </div>
     `;
 
