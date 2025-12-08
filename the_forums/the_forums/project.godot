@@ -16,4 +16,5 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Stapler="*res://mechanics/StaplerManager.gd"
 Mouse="*res://mechanics/MouseModeManager.gd"

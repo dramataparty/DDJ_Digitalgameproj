@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3v1dw4m11bgr"]
+
+[ext_resource type="Script" uid="uid://p1anv42loegj" path="res://ui/test_page.gd" id="1_qlmq8"]
+
+[node name="TestPage" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_qlmq8")
