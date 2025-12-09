@@ -71,7 +71,7 @@ func _gui_input(event: InputEvent) -> void:
 					# local_to_map is not a standard Control method. 
 					# Assuming you meant map_global_position_to_local for 'cut_local_x'.
 					# Or simply event.position if you are cutting at the click point.
-					var cut_local_x: float = map_global_position_to_local(get_global_mouse_position()).x
+					var cut_local_x: float = get_local_mouse_position().x
 					_split_self(cut_local_x)
 				get_viewport().set_input_as_handled()
 
@@ -138,7 +138,7 @@ func _split_self(cut_local_x: float) -> void:
 # ask the StaplerManager (see below) to do the ray-cast/host check
 # Assuming StaplerManager is another Autoload/Global class
 func _request_staple() -> void:
-	StaplerManager.try_staple(self)
+	Stapler.try_staple(self)
 
 # another Element (or the Page itself) accepts a cut fragment
 func accept_staple(piece: Control) -> void:
