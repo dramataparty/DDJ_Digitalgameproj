@@ -42,11 +42,86 @@ offset_bottom = 125.0
 pivot_offset = Vector2(575, 325)
 metadata/_edit_use_anchors_ = true
 
+<<<<<<< HEAD
 [node name="Draggable" parent="." instance=ExtResource("6_swonn")]
 position = Vector2(-73, -62)
+=======
+[node name="Draggable" type="Sprite2D" parent="."]
+position = Vector2(183, 410)
+texture = ExtResource("6_6of3j")
+script = ExtResource("7_swonn")
+item_id = "key"
+spriteinactive = ExtResource("6_6of3j")
+spriteactive = ExtResource("9_deugs")
+>>>>>>> 7f395ed (Dynamic changes to the page are now possible)
 
 [node name="Receptor" parent="." instance=ExtResource("7_d73fv")]
 position = Vector2(198, -52)
 
+<<<<<<< HEAD
 [node name="Draggable2" parent="." instance=ExtResource("6_swonn")]
 position = Vector2(-265, -25)
+=======
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Draggable/Area2D"]
+shape = SubResource("CircleShape2D_d73fv")
+
+[node name="Receptor" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(680.5, 364.5)
+scale = Vector2(1.61719, 1.61719)
+texture = ExtResource("6_6of3j")
+script = ExtResource("8_d73fv")
+item_id = "key"
+spriteinactive = ExtResource("6_6of3j")
+spriteactive = ExtResource("9_deugs")
+
+[node name="Area2D" type="Area2D" parent="Receptor"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Receptor/Area2D"]
+shape = SubResource("CircleShape2D_deugs")
+
+[node name="Draggable2" type="Sprite2D" parent="."]
+position = Vector2(366, 561)
+texture = ExtResource("6_6of3j")
+script = ExtResource("7_swonn")
+item_id = "key"
+spriteinactive = ExtResource("6_6of3j")
+spriteactive = ExtResource("9_deugs")
+
+[node name="Area2D" type="Area2D" parent="Draggable2"]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Draggable2/Area2D"]
+shape = SubResource("CircleShape2D_d73fv")
+
+[node name="Receptor2" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(1781, 953.966)
+scale = Vector2(2.6153, 2.6153)
+texture = ExtResource("6_6of3j")
+script = ExtResource("8_d73fv")
+item_id = "key"
+spriteinactive = ExtResource("6_6of3j")
+spriteactive = ExtResource("9_deugs")
+
+[node name="Area2D" type="Area2D" parent="Receptor2"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Receptor2/Area2D"]
+shape = SubResource("CircleShape2D_deugs")
+
+[connection signal="activated" from="Receptor" to="RichTextLabel" method="_on_receptor_activated"]
+[connection signal="deactivated" from="Receptor" to="RichTextLabel" method="_on_receptor_deactivated"]
+[connection signal="area_entered" from="Receptor/Area2D" to="Receptor" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Receptor/Area2D" to="Receptor" method="_on_area_2d_area_exited"]
+[connection signal="activated" from="Receptor2" to="RichTextLabel" method="_on_receptor_activated"]
+[connection signal="area_entered" from="Receptor2/Area2D" to="Receptor2" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Receptor2/Area2D" to="Receptor2" method="_on_area_2d_area_exited"]
+>>>>>>> 7f395ed (Dynamic changes to the page are now possible)
