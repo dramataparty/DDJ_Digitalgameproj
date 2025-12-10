@@ -5,6 +5,9 @@ var drag_offset := Vector2.ZERO
 
 @export var item_id: String = ""
 
+@export var spriteinactive: CompressedTexture2D
+@export var spriteactive: CompressedTexture2D
+
 func get_id():
 	return item_id
 

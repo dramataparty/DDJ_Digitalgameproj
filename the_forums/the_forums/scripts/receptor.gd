@@ -6,16 +6,21 @@ extends Sprite2D
 var key_strength: int = 0
 # accepts only items with this item_id
 
+signal activated(item_id: String)
+signal deactivated(item_id: String)
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().has_method("get_id") and area.get_parent().get_id() == item_id:
+		area.get_parent().texture = area.get_parent().spriteactive
 		if key_strength <= 0:
-			print("active")
+			activated.emit(item_id)
 			texture = spriteactive
 		key_strength += 1
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.get_parent().has_method("get_id") and area.get_parent().get_id() == item_id:
+		area.get_parent().texture = area.get_parent().spriteinactive
 		key_strength -= 1
 		if key_strength <= 0:
-			print("inactive")
+			deactivated.emit(item_id)
 			texture = spriteinactive

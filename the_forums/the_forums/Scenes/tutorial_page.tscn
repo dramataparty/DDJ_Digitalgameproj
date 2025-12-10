@@ -50,6 +50,8 @@ position = Vector2(183, 410)
 texture = ExtResource("6_6of3j")
 script = ExtResource("7_swonn")
 item_id = "key"
+spriteinactive = ExtResource("6_6of3j")
+spriteactive = ExtResource("9_deugs")
 
 [node name="Area2D" type="Area2D" parent="Draggable"]
 collision_layer = 2
@@ -82,6 +84,8 @@ position = Vector2(366, 561)
 texture = ExtResource("6_6of3j")
 script = ExtResource("7_swonn")
 item_id = "key"
+spriteinactive = ExtResource("6_6of3j")
+spriteactive = ExtResource("9_deugs")
 
 [node name="Area2D" type="Area2D" parent="Draggable2"]
 collision_layer = 2
@@ -91,5 +95,28 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Draggable2/Area2D"]
 shape = SubResource("CircleShape2D_d73fv")
 
+[node name="Receptor2" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(1781, 953.966)
+scale = Vector2(2.6153, 2.6153)
+texture = ExtResource("6_6of3j")
+script = ExtResource("8_d73fv")
+item_id = "key"
+spriteinactive = ExtResource("6_6of3j")
+spriteactive = ExtResource("9_deugs")
+
+[node name="Area2D" type="Area2D" parent="Receptor2"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Receptor2/Area2D"]
+shape = SubResource("CircleShape2D_deugs")
+
+[connection signal="activated" from="Receptor" to="RichTextLabel" method="_on_receptor_activated"]
+[connection signal="deactivated" from="Receptor" to="RichTextLabel" method="_on_receptor_deactivated"]
 [connection signal="area_entered" from="Receptor/Area2D" to="Receptor" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Receptor/Area2D" to="Receptor" method="_on_area_2d_area_exited"]
+[connection signal="activated" from="Receptor2" to="RichTextLabel" method="_on_receptor_activated"]
+[connection signal="area_entered" from="Receptor2/Area2D" to="Receptor2" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Receptor2/Area2D" to="Receptor2" method="_on_area_2d_area_exited"]
