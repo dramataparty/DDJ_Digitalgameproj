@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dua0w85ns0get"]
+
+[ext_resource type="Texture2D" uid="uid://bjpls42x75gve" path="res://icon.svg" id="1_ihdbc"]
+[ext_resource type="Script" path="res://scripts/receptor.gd" id="2_u3gvp"]
+[ext_resource type="Texture2D" uid="uid://dcw3ncv63wbok" path="res://icon2.svg" id="3_ugjh6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_deugs"]
+radius = 86.2613
+
+[node name="Receptor" type="Sprite2D"]
+z_index = -10
+position = Vector2(223.5, 36.5002)
+scale = Vector2(1.61719, 1.61719)
+texture = ExtResource("1_ihdbc")
+script = ExtResource("2_u3gvp")
+item_id = "key"
+spriteinactive = ExtResource("1_ihdbc")
+spriteactive = ExtResource("3_ugjh6")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_deugs")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
