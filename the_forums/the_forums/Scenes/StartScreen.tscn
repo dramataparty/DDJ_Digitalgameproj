@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bh3m7w4kvidje"]
 
-[ext_resource type="Script" uid="uid://blugkpj8ufbhv" path="res://ui/button.gd" id="1_rte7b"]
+[ext_resource type="Script" path="res://Scenes/button.gd" id="1_ko4ly"]
 
 [node name="StartScreen" type="Control"]
 layout_mode = 3
@@ -30,6 +30,6 @@ offset_bottom = 91.0269
 rotation = -0.0456283
 text = "Start
 "
-script = ExtResource("1_rte7b")
+script = ExtResource("1_ko4ly")
 
 [connection signal="pressed" from="Label/Button" to="Label/Button" method="_on_pressed"]

@@ -67,12 +67,17 @@ func _gui_input(event: InputEvent) -> void:
 			# --- SCISSORS ---
 			Mouse.Mode.SCISSORS:
 				# You can't cut a fragment again
-				if !is_cut_piece: 
+				# if !is_cut_piece: 
 					# local_to_map is not a standard Control method. 
 					# Assuming you meant map_global_position_to_local for 'cut_local_x'.
 					# Or simply event.position if you are cutting at the click point.
+<<<<<<< HEAD
 					var cut_local_x: float = get_local_mouse_position().x
 					_split_self(cut_local_x)
+=======
+					# var cut_local_x: float = map_global_position_to_local(get_global_mouse_position()).x
+					# _split_self(cut_local_x)
+>>>>>>> f557ea6 (Dragging works, power selection works)
 				get_viewport().set_input_as_handled()
 
 			# --- STAPLER ---
@@ -138,7 +143,12 @@ func _split_self(cut_local_x: float) -> void:
 # ask the StaplerManager (see below) to do the ray-cast/host check
 # Assuming StaplerManager is another Autoload/Global class
 func _request_staple() -> void:
+<<<<<<< HEAD
 	Stapler.try_staple(self)
+=======
+	# StaplerManager.try_staple(self)
+	pass
+>>>>>>> f557ea6 (Dragging works, power selection works)
 
 # another Element (or the Page itself) accepts a cut fragment
 func accept_staple(piece: Control) -> void:
