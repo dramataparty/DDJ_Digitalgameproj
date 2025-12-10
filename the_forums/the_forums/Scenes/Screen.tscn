@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cby1mfoxmwnsj" path="res://ui/monitor.png" id="1_w8lkc"]
 [ext_resource type="PackedScene" uid="uid://c54duj4ovwjhp" path="res://Scenes/tutorial_page.tscn" id="2_tvs07"]
-[ext_resource type="Script" path="res://Scenes/mouse_mode_selection.gd" id="3_dw3bs"]
+[ext_resource type="Script" uid="uid://bukwa2ipxynb4" path="res://Scenes/mouse_mode_selection.gd" id="3_dw3bs"]
 
 [node name="Screen" type="Node2D"]
 
@@ -21,11 +21,15 @@ offset_top = 64.5013
 offset_right = 788.691
 offset_bottom = 95.501
 selected = 0
-item_count = 2
+item_count = 4
 popup/item_0/text = "Normal"
 popup/item_0/id = 0
 popup/item_1/text = "Drag"
 popup/item_1/id = 1
+popup/item_2/text = "Z-Shift"
+popup/item_2/id = 2
+popup/item_3/text = "Cut N' Fuse"
+popup/item_3/id = 3
 script = ExtResource("3_dw3bs")
 
 [connection signal="item_selected" from="OptionButton" to="OptionButton" method="_on_item_selected"]
