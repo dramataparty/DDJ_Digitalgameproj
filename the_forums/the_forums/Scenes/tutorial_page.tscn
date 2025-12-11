@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c54duj4ovwjhp"]
+[gd_scene load_steps=10 format=3 uid="uid://c54duj4ovwjhp"]
 
 [ext_resource type="FontFile" uid="uid://6kk7ba3spm6v" path="res://ui/fonts/times-new-roman/times new roman.ttf" id="1_hfqqn"]
 [ext_resource type="FontFile" uid="uid://cr1ls3ix22pte" path="res://ui/fonts/times-new-roman/times new roman italic.ttf" id="2_h171a"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="6_swonn"]
 [ext_resource type="PackedScene" uid="uid://dua0w85ns0get" path="res://assets/receptor.tscn" id="7_d73fv"]
 [ext_resource type="Script" uid="uid://vi25x1wp435a" path="res://scripts/all_in_one_object.gd" id="8_d73fv"]
+[ext_resource type="Script" uid="uid://2qmgq8yclo1r" path="res://Scenes/next_button.gd" id="9_deugs"]
 
 [node name="Page" type="Node2D"]
 
@@ -58,3 +59,11 @@ min_z_index = -5
 max_z_index = 5
 z_step = 1
 is_split = false
+
+[node name="nextButton" type="Button" parent="."]
+offset_left = 266.0
+offset_top = -317.0
+offset_right = 392.0
+offset_bottom = -256.0
+text = "To Next Level >"
+script = ExtResource("9_deugs")
