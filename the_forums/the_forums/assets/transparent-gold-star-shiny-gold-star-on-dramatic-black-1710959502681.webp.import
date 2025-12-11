@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjnfk2kavgsts"
-path="res://.godot/imported/transparent-gold-star-shiny-gold-star-on-dramatic-black-1710959502681.webp-5e9033b3224146c7512e880589a3e459.ctex"
+path="res://.godot/imported/transparent-gold-star-shiny-gold-star-on-dramatic-black-1710959502681.webp-898ec3c6e3d184a3a4e699e60b7f6d40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scripts/transparent-gold-star-shiny-gold-star-on-dramatic-black-1710959502681.webp"
-dest_files=["res://.godot/imported/transparent-gold-star-shiny-gold-star-on-dramatic-black-1710959502681.webp-5e9033b3224146c7512e880589a3e459.ctex"]
+source_file="res://assets/transparent-gold-star-shiny-gold-star-on-dramatic-black-1710959502681.webp"
+dest_files=["res://.godot/imported/transparent-gold-star-shiny-gold-star-on-dramatic-black-1710959502681.webp-898ec3c6e3d184a3a4e699e60b7f6d40.ctex"]
 
 [params]
 

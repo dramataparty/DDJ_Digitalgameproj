@@ -44,5 +44,14 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_53d7m")
 
+[node name="ForumPost" type="HBoxContainer" parent="ForumContent"]
+layout_mode = 2
+
+[node name="ProfilePicture" type="TextureRect" parent="ForumContent/ForumPost"]
+layout_mode = 2
+
+[node name="MessageText" type="Label" parent="ForumContent/ForumPost"]
+layout_mode = 2
+
 [node name="ForumBuilder" type="Node2D" parent="."]
 script = ExtResource("6_isimh")
