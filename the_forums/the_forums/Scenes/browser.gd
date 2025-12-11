@@ -8,4 +8,4 @@ func load_webpage(page):
 	page.set("position", Vector2(400, 450))
 	
 func _ready():
-	load_webpage(sports)
+	load_webpage(tutorial)
