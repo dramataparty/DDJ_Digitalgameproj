@@ -1,19 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://bk0oc1t5ywag5"]
 
 [ext_resource type="Texture2D" uid="uid://cby1mfoxmwnsj" path="res://ui/monitor.png" id="1_w8lkc"]
-[ext_resource type="PackedScene" uid="uid://c54duj4ovwjhp" path="res://Scenes/tutorial_page.tscn" id="2_tvs07"]
 [ext_resource type="Script" uid="uid://bukwa2ipxynb4" path="res://Scenes/mouse_mode_selection.gd" id="3_dw3bs"]
+[ext_resource type="Script" uid="uid://cgo2oa07ll2va" path="res://Scenes/browser.gd" id="3_tvs07"]
 
 [node name="Screen" type="Node2D"]
 
 [node name="Browser" type="Sprite2D" parent="."]
+z_index = 20
 position = Vector2(400, 300)
 scale = Vector2(1.025, 1.085)
 texture = ExtResource("1_w8lkc")
-
-[node name="Page" parent="." instance=ExtResource("2_tvs07")]
-z_index = -1
-position = Vector2(400, 450)
 
 [node name="OptionButton" type="OptionButton" parent="."]
 offset_left = 622.691
@@ -31,5 +28,12 @@ popup/item_2/id = 2
 popup/item_3/text = "Cut N' Fuse"
 popup/item_3/id = 3
 script = ExtResource("3_dw3bs")
+
+[node name="WebPage" type="Node2D" parent="."]
+z_index = -1
+script = ExtResource("3_tvs07")
+
+[node name="Page" parent="WebPage" instance_placeholder="res://Scenes/tutorial_page.tscn"]
+position = Vector2(400, 450)
 
 [connection signal="item_selected" from="OptionButton" to="OptionButton" method="_on_item_selected"]

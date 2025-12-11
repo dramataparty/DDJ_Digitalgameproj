@@ -44,6 +44,15 @@ offset_bottom = 125.0
 pivot_offset = Vector2(575, 325)
 metadata/_edit_use_anchors_ = true
 
+[node name="nextButton" type="Button" parent="."]
+offset_left = 264.0
+offset_top = -317.0
+offset_right = 392.0
+offset_bottom = -286.0
+text = "To Next Level >"
+script = ExtResource("9_deugs")
+metadata/_edit_use_anchors_ = true
+
 [node name="Draggable" parent="." instance=ExtResource("6_swonn")]
 position = Vector2(-73, -62)
 
@@ -59,11 +68,3 @@ min_z_index = -5
 max_z_index = 5
 z_step = 1
 is_split = false
-
-[node name="nextButton" type="Button" parent="."]
-offset_left = 266.0
-offset_top = -317.0
-offset_right = 392.0
-offset_bottom = -256.0
-text = "To Next Level >"
-script = ExtResource("9_deugs")
