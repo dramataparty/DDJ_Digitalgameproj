@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://fqqa0woektaf"]
+[gd_scene load_steps=8 format=3 uid="uid://fqqa0woektaf"]
 
 [ext_resource type="Script" uid="uid://x1k1d44qic4j" path="res://Scenes/sportsf_orum.gd" id="1_kedbb"]
 [ext_resource type="Script" uid="uid://b65n50p5q7js3" path="res://Scenes/slot.gd" id="2_6en60"]
 [ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="3_kvpg0"]
 [ext_resource type="Script" uid="uid://vi25x1wp435a" path="res://scripts/all_in_one_object.gd" id="4_53d7m"]
+[ext_resource type="Texture2D" uid="uid://bro4rgu05i4yx" path="res://assets/CQKLFUP32N3RZUMDC6WDURYYRAERCK25.gif" id="4_ptk2b"]
 [ext_resource type="Script" uid="uid://cy3b4x58vimt0" path="res://Scenes/forum_content.gd" id="5_53d7m"]
 [ext_resource type="Script" uid="uid://dykpbgmkaqsjc" path="res://Scenes/forum_builder.gd" id="6_isimh"]
 
@@ -20,6 +21,7 @@ script = ExtResource("1_kedbb")
 
 [node name="Header" parent="." instance=ExtResource("3_kvpg0")]
 position = Vector2(567, 69)
+texture = ExtResource("4_ptk2b")
 script = ExtResource("4_53d7m")
 spriteinactive = null
 spriteactive = null
