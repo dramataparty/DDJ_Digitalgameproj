@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Mouse="*res://mechanics/MouseModeManager.gd"
 Stapler="*res://mechanics/StaplerManager.gd"
+DragState="*res://scripts/DragState.gd"
 
 [display]
 

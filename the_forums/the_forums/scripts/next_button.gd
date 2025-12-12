@@ -1,6 +1,8 @@
 extends Button
+signal win(next_scene_path: String)
+
 func _on_enter_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Sports.tscn")
+	emit_signal("win","res://Scenes/Sports/Sports.tscn")
 
 func _on_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Sports.tscn")
+	emit_signal("win","res://Scenes/Sports/Sports.tscn")

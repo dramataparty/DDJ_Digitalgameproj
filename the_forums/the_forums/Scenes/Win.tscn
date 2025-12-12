@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://dm5lltw0gt80k"]
+
+[ext_resource type="Script" uid="uid://cqwd8c3jueuks" path="res://Scenes/general_win.gd" id="1_q85nr"]
+[ext_resource type="FontFile" uid="uid://6kk7ba3spm6v" path="res://ui/fonts/times-new-roman/times new roman.ttf" id="2_sc314"]
+[ext_resource type="FontFile" uid="uid://cr1ls3ix22pte" path="res://ui/fonts/times-new-roman/times new roman italic.ttf" id="3_y6o4t"]
+[ext_resource type="FontFile" uid="uid://c7syq1g3bso8x" path="res://ui/fonts/times-new-roman/times new roman bold italic.ttf" id="4_o6xvn"]
+[ext_resource type="FontFile" uid="uid://cniakhl7e7u2q" path="res://ui/fonts/times-new-roman/times new roman bold.ttf" id="5_bt77o"]
+[ext_resource type="Texture2D" uid="uid://d2mt7nqi8cvh5" path="res://assets/gold_star.gif" id="7_2vnvq"]
+
+[node name="Page" type="Node2D"]
+script = ExtResource("1_q85nr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 21.0
+offset_top = 6.0
+offset_right = 721.0
+offset_bottom = 1136.0
+pivot_offset = Vector2(550, 565)
+theme_override_fonts/normal_font = ExtResource("2_sc314")
+theme_override_fonts/italics_font = ExtResource("3_y6o4t")
+theme_override_fonts/bold_italics_font = ExtResource("4_o6xvn")
+theme_override_fonts/bold_font = ExtResource("5_bt77o")
+bbcode_enabled = true
+text = "[color=#000000]
+[font_size=36][b]Thank you for playing through the tutorial![/b][/font_size]
+
+Please await patiently for the full release.
+[/color]
+
+"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -100
+offset_right = 766.0
+offset_bottom = 415.0
+pivot_offset = Vector2(575, 325)
+metadata/_edit_use_anchors_ = true
+
+[node name="GoldStar" type="Sprite2D" parent="."]
+position = Vector2(186, 281)
+texture = ExtResource("7_2vnvq")
+
+[node name="GoldStar2" type="Sprite2D" parent="."]
+position = Vector2(409, 267)
+texture = ExtResource("7_2vnvq")
+
+[node name="GoldStar3" type="Sprite2D" parent="."]
+position = Vector2(625, 271)
+texture = ExtResource("7_2vnvq")
+
+[node name="GoldStar4" type="Sprite2D" parent="."]
+position = Vector2(278, 180)
+texture = ExtResource("7_2vnvq")
+
+[node name="GoldStar5" type="Sprite2D" parent="."]
+position = Vector2(494, 163)
+texture = ExtResource("7_2vnvq")

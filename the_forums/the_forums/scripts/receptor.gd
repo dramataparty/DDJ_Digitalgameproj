@@ -9,17 +9,26 @@ var key_strength: int = 0
 signal activated(item_id: String)
 signal deactivated(item_id: String)
 
+		
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.get_parent().has_method("get_id") and area.get_parent().get_id() == item_id:
-		area.get_parent().texture = area.get_parent().spriteactive
-		if area.get_parent().has_method("drop"):
-			area.get_parent().drop()
-			print("drop your weapons!")
-			area.get_parent().set("position", self.position)
+	var item = area.get_parent()
+	if item.has_method("get_id"):
+
+		# Snap to the center of THIS Sprite2D
+		item.global_position = global_position
+
+		# Optional: stop any residual dragging movement
+		if ("dragging" in item):
+			item.dragging = false
+
+	if (item.get_id() == item_id):
+		# Update visuals
+		item.texture = item.spriteactive
 		if key_strength <= 0:
 			activated.emit(item_id)
 			texture = spriteactive
 		key_strength += 1
+
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.get_parent().has_method("get_id") and area.get_parent().get_id() == item_id:
