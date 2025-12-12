@@ -48,6 +48,7 @@ pivot_offset = Vector2(575, 325)
 metadata/_edit_use_anchors_ = true
 
 [node name="nextButton" type="Button" parent="."]
+visible = false
 offset_left = 605.0
 offset_top = 22.0
 offset_right = 733.0
@@ -69,6 +70,7 @@ spriteinactive = ExtResource("8_m4xos")
 spriteactive = ExtResource("9_qx2hg")
 
 [node name="Draggable2" parent="." instance=ExtResource("6_swonn")]
+visible = false
 position = Vector2(108, 289)
 script = ExtResource("8_d73fv")
 min_z_index = -5
@@ -76,4 +78,4 @@ max_z_index = 5
 z_step = 1
 is_split = false
 
-[connection signal="win" from="nextButton" to="." method="_on_next_button_win"]
+[connection signal="activated" from="Receptor" to="." method="_on_receptor_activated"]

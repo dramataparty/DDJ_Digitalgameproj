@@ -37,3 +37,4 @@ script = ExtResource("3_tvs07")
 [node name="Page" parent="WebPage" instance_placeholder="res://Scenes/tutorial_page.tscn"]
 
 [connection signal="item_selected" from="OptionButton" to="OptionButton" method="_on_item_selected"]
+[connection signal="request_scene_change" from="WebPage/Page" to="WebPage" method="_on_page_request_scene_change"]
