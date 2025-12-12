@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://fqqa0woektaf"]
+
+[ext_resource type="Script" uid="uid://x1k1d44qic4j" path="res://scripts/sportsf_orum.gd" id="1_opne4"]
+[ext_resource type="Script" uid="uid://b65n50p5q7js3" path="res://scripts/slot.gd" id="2_8b0xf"]
+[ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="3_88q8u"]
+[ext_resource type="Texture2D" uid="uid://bro4rgu05i4yx" path="res://assets/CQKLFUP32N3RZUMDC6WDURYYRAERCK25.gif" id="4_7e2xf"]
+[ext_resource type="Script" uid="uid://vi25x1wp435a" path="res://scripts/all_in_one_object.gd" id="5_mljgp"]
+[ext_resource type="Script" uid="uid://cy3b4x58vimt0" path="res://scripts/forum_content.gd" id="6_sfc3c"]
+[ext_resource type="Script" uid="uid://dykpbgmkaqsjc" path="res://scripts/forum_builder.gd" id="7_acsdt"]
+
+[node name="SportsfOrum" type="Node2D"]
+script = ExtResource("1_opne4")
+
+[node name="Slot" type="Node2D" parent="."]
+script = ExtResource("2_8b0xf")
+
+[node name="Area2D" type="Area2D" parent="Slot"]
+
+[node name="LevelBuilder" type="Node2D" parent="."]
+script = ExtResource("1_opne4")
+
+[node name="Header" parent="." instance=ExtResource("3_88q8u")]
+position = Vector2(236, 64)
+texture = ExtResource("4_7e2xf")
+script = ExtResource("5_mljgp")
+spriteinactive = null
+spriteactive = null
+min_z_index = -5
+max_z_index = 5
+z_step = 1
+is_split = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Header"]
+offset_right = 295.0
+offset_bottom = 40.0
+text = "I'm sporting it, i'm sporting it"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-27, 0)
+
+[node name="ForumScroll" type="ScrollContainer" parent="."]
+offset_left = 1.0
+offset_top = 149.0
+offset_right = 41.0
+offset_bottom = 189.0
+
+[node name="ForumContent" type="VBoxContainer" parent="."]
+offset_left = 475.0
+offset_top = 287.0
+offset_right = 515.0
+offset_bottom = 327.0
+script = ExtResource("6_sfc3c")
+
+[node name="ForumPost" type="HBoxContainer" parent="ForumContent"]
+layout_mode = 2
+
+[node name="ProfilePicture" type="TextureRect" parent="ForumContent/ForumPost"]
+layout_mode = 2
+
+[node name="MessageText" type="Label" parent="ForumContent/ForumPost"]
+layout_mode = 2
+
+[node name="ForumBuilder" type="Node2D" parent="."]
+position = Vector2(340, 285)
+script = ExtResource("7_acsdt")
+
+[node name="Cqklfup32n3rzumdc6wduryyraerck25" type="Sprite2D" parent="."]
+position = Vector2(-18, 584)
+texture = ExtResource("4_7e2xf")

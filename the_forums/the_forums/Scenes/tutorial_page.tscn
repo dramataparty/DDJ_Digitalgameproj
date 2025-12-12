@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c54duj4ovwjhp"]
+[gd_scene load_steps=13 format=3 uid="uid://c54duj4ovwjhp"]
 
 [ext_resource type="FontFile" uid="uid://6kk7ba3spm6v" path="res://ui/fonts/times-new-roman/times new roman.ttf" id="1_hfqqn"]
 [ext_resource type="FontFile" uid="uid://cr1ls3ix22pte" path="res://ui/fonts/times-new-roman/times new roman italic.ttf" id="2_h171a"]
@@ -8,15 +8,18 @@
 [ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="6_swonn"]
 [ext_resource type="PackedScene" uid="uid://dua0w85ns0get" path="res://assets/receptor.tscn" id="7_d73fv"]
 [ext_resource type="Script" uid="uid://vi25x1wp435a" path="res://scripts/all_in_one_object.gd" id="8_d73fv"]
-[ext_resource type="Script" uid="uid://2qmgq8yclo1r" path="res://Scenes/next_button.gd" id="9_deugs"]
+[ext_resource type="Texture2D" uid="uid://bjpls42x75gve" path="res://icon.svg" id="8_m4xos"]
+[ext_resource type="Script" uid="uid://2qmgq8yclo1r" path="res://scripts/next_button.gd" id="9_deugs"]
+[ext_resource type="Texture2D" uid="uid://dcw3ncv63wbok" path="res://icon2.svg" id="9_qx2hg"]
+[ext_resource type="Script" uid="uid://cw17vl1clebr4" path="res://scripts/receptor.gd" id="9_rqjya"]
 
 [node name="Page" type="Node2D"]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = -350.0
-offset_top = -320.0
-offset_right = 350.0
-offset_bottom = 810.0
+offset_left = 21.0
+offset_top = 6.0
+offset_right = 721.0
+offset_bottom = 1136.0
 pivot_offset = Vector2(550, 565)
 theme_override_fonts/normal_font = ExtResource("1_hfqqn")
 theme_override_fonts/italics_font = ExtResource("2_h171a")
@@ -37,33 +40,35 @@ script = ExtResource("5_h171a")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -100
-offset_left = -400.0
-offset_top = -325.0
-offset_right = 400.0
-offset_bottom = 125.0
+offset_right = 766.0
+offset_bottom = 415.0
 pivot_offset = Vector2(575, 325)
 metadata/_edit_use_anchors_ = true
 
 [node name="nextButton" type="Button" parent="."]
-offset_left = 264.0
-offset_top = -317.0
-offset_right = 392.0
-offset_bottom = -286.0
+offset_left = 605.0
+offset_top = 22.0
+offset_right = 733.0
+offset_bottom = 53.0
 text = "To Next Level >"
 script = ExtResource("9_deugs")
 metadata/_edit_use_anchors_ = true
 
 [node name="Draggable" parent="." instance=ExtResource("6_swonn")]
-position = Vector2(-73, -62)
+position = Vector2(300, 252)
+item_id = "key"
+spriteinactive = ExtResource("8_m4xos")
+spriteactive = ExtResource("9_qx2hg")
 
 [node name="Receptor" parent="." instance=ExtResource("7_d73fv")]
-position = Vector2(198, -52)
+position = Vector2(571, 262)
+script = ExtResource("9_rqjya")
+spriteinactive = ExtResource("8_m4xos")
+spriteactive = ExtResource("9_qx2hg")
 
 [node name="Draggable2" parent="." instance=ExtResource("6_swonn")]
-position = Vector2(-265, -25)
+position = Vector2(108, 289)
 script = ExtResource("8_d73fv")
-spriteinactive = null
-spriteactive = null
 min_z_index = -5
 max_z_index = 5
 z_step = 1

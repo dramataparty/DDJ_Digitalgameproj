@@ -1,25 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfhe50wg2mf52"]
+[gd_scene load_steps=4 format=3 uid="uid://bfhe50wg2mf52"]
 
 [ext_resource type="Texture2D" uid="uid://bjpls42x75gve" path="res://icon.svg" id="1_lwnnj"]
-[ext_resource type="Texture2D" uid="uid://dcw3ncv63wbok" path="res://icon2.svg" id="3_0b3lm"]
 
 [sub_resource type="GDScript" id="GDScript_qedgo"]
 script/source = "extends Sprite2D
 
 var dragging := false
 var drag_offset := Vector2.ZERO
+var active := false
 
 @export var item_id: String = \"\"
 
-@export var spriteinactive: CompressedTexture2D
-@export var spriteactive: CompressedTexture2D
+@export var spriteinactive: Texture2D
+@export var spriteactive: Texture2D
 
 func get_id():
 	return item_id
 
 func _input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and Mouse.get_mode() == Mouse.Mode.HAND:
+		if event.button_index == MOUSE_BUTTON_LEFT and Mouse.get_mode() == Mouse.Mode.HAND and active == false:
 			# Start dragging if clicked on the sprite
 			if event.pressed and get_rect().has_point(to_local(event.position)):
 				dragging = true
@@ -37,12 +37,8 @@ func _process(delta):
 radius = 75.2396
 
 [node name="Draggable" type="Sprite2D"]
-position = Vector2(-274, 82.0002)
 texture = ExtResource("1_lwnnj")
 script = SubResource("GDScript_qedgo")
-item_id = "key"
-spriteinactive = ExtResource("1_lwnnj")
-spriteactive = ExtResource("3_0b3lm")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2

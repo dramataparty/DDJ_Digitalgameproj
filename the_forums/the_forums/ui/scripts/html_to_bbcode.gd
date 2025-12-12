@@ -9,7 +9,6 @@ Under the browser you should have a panel that brings up your abilities!
 [/color]
 """
 
-
 func _on_receptor_activated(item_id: String) -> void:
 	text = """[color=#000000]
 [font_size=36][b]Congratulations![/b][/font_size]

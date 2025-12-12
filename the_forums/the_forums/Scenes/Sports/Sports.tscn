@@ -1,0 +1,416 @@
+[gd_scene load_steps=14 format=3 uid="uid://bf635bapdvitt"]
+
+[ext_resource type="FontFile" uid="uid://6kk7ba3spm6v" path="res://ui/fonts/times-new-roman/times new roman.ttf" id="1_24yh5"]
+[ext_resource type="FontFile" uid="uid://cr1ls3ix22pte" path="res://ui/fonts/times-new-roman/times new roman italic.ttf" id="2_xk357"]
+[ext_resource type="FontFile" uid="uid://c7syq1g3bso8x" path="res://ui/fonts/times-new-roman/times new roman bold italic.ttf" id="3_vnxwk"]
+[ext_resource type="FontFile" uid="uid://cniakhl7e7u2q" path="res://ui/fonts/times-new-roman/times new roman bold.ttf" id="4_xc6wr"]
+[ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="6_mt1eo"]
+[ext_resource type="PackedScene" uid="uid://dua0w85ns0get" path="res://assets/receptor.tscn" id="7_djfqq"]
+[ext_resource type="Texture2D" uid="uid://wgibqrcws6lq" path="res://assets/broken_image.png" id="7_mt1eo"]
+[ext_resource type="Texture2D" uid="uid://bhfe5q720yna7" path="res://assets/RedLogo.png" id="7_vnxwk"]
+[ext_resource type="Texture2D" uid="uid://b8f0j5yv2h1xd" path="res://assets/GreenLogo.png" id="10_521in"]
+[ext_resource type="Texture2D" uid="uid://bro4rgu05i4yx" path="res://assets/CQKLFUP32N3RZUMDC6WDURYYRAERCK25.gif" id="10_xc6wr"]
+[ext_resource type="Texture2D" uid="uid://c003kf70od2yv" path="res://assets/Bluelogo.png" id="11_qtcsa"]
+[ext_resource type="Script" uid="uid://cw17vl1clebr4" path="res://scripts/receptor.gd" id="11_xc6wr"]
+[ext_resource type="Texture2D" uid="uid://d2mt7nqi8cvh5" path="res://assets/gold_star.gif" id="12_fhulc"]
+
+[node name="Page" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -100
+offset_right = 766.0
+offset_bottom = 415.0
+pivot_offset = Vector2(575, 325)
+color = Color(0.215686, 0.517647, 0.129412, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_right = 758.0
+offset_bottom = 401.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1, 800)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Control"]
+layout_mode = 2
+offset_right = 758.0
+offset_bottom = 785.0
+pivot_offset = Vector2(550, 565)
+theme_override_fonts/normal_font = ExtResource("1_24yh5")
+theme_override_fonts/italics_font = ExtResource("2_xk357")
+theme_override_fonts/bold_italics_font = ExtResource("3_vnxwk")
+theme_override_fonts/bold_font = ExtResource("4_xc6wr")
+bbcode_enabled = true
+text = "
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[center][color=#ffffff]
+[font_size=36][b]Our Sponsors:[/b][/font_size]
+[/color][/center]"
+
+[node name="Cqklfup32n3rzumdc6wduryyraerck25" type="Sprite2D" parent="ScrollContainer/VBoxContainer/Control"]
+position = Vector2(389, 39)
+scale = Vector2(1.97761, 1)
+texture = ExtResource("10_xc6wr")
+
+[node name="Chat" type="Node2D" parent="ScrollContainer/VBoxContainer/Control"]
+position = Vector2(98, 149)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Control/Chat"]
+offset_left = 42.635
+offset_top = -31.675
+offset_right = 642.635
+offset_bottom = 1098.32
+pivot_offset = Vector2(550, 565)
+theme_override_fonts/normal_font = ExtResource("1_24yh5")
+theme_override_fonts/italics_font = ExtResource("2_xk357")
+theme_override_fonts/bold_italics_font = ExtResource("3_vnxwk")
+theme_override_fonts/bold_font = ExtResource("4_xc6wr")
+bbcode_enabled = true
+text = "[color=#000000][font_size=22][b]Admin (webmaster)[/b][/font_size]
+Hello everyone! Due to the recent events going on, I accidentally deleted everyone's profile pictures - sorry! An admin will put them back in their place eventually.
+[/color]"
+
+[node name="Receptor" parent="ScrollContainer/VBoxContainer/Control/Chat" instance=ExtResource("7_djfqq")]
+position = Vector2(-6, 6)
+scale = Vector2(0.59375, 0.59375)
+texture = ExtResource("7_mt1eo")
+script = ExtResource("11_xc6wr")
+item_id = "star"
+spriteinactive = ExtResource("7_mt1eo")
+
+[node name="ColorRect2" type="ColorRect" parent="ScrollContainer/VBoxContainer/Control/Chat"]
+z_index = -100
+offset_left = 36.0
+offset_top = -8.0
+offset_right = 636.0
+offset_bottom = 32.0
+scale = Vector2(1, 1.2)
+color = Color(0.956296, 0.855435, 0.805649, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="ScrollContainer/VBoxContainer/Control/Chat"]
+z_index = -100
+offset_left = 36.0
+offset_top = -33.0
+offset_right = 656.0
+offset_bottom = 7.0
+scale = Vector2(0.31, 0.63)
+color = Color(0.885054, 0.856298, 0.998264, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Chat2" type="Node2D" parent="ScrollContainer/VBoxContainer/Control"]
+position = Vector2(98, 255)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Control/Chat2"]
+offset_left = 42.635
+offset_top = -31.675
+offset_right = 642.635
+offset_bottom = 1098.32
+pivot_offset = Vector2(550, 565)
+theme_override_fonts/normal_font = ExtResource("1_24yh5")
+theme_override_fonts/italics_font = ExtResource("2_xk357")
+theme_override_fonts/bold_italics_font = ExtResource("3_vnxwk")
+theme_override_fonts/bold_font = ExtResource("4_xc6wr")
+bbcode_enabled = true
+text = "[color=#000000][font_size=22][b]Gary Oak[/b][/font_size]
+this is fucking bullshit man every day this fucking forum gets attacked is a day we're not winning!!!!!1111!!!! i swear we have to take this championship backkkkkk
+[/color]"
+
+[node name="Receptor" parent="ScrollContainer/VBoxContainer/Control/Chat2" instance=ExtResource("7_djfqq")]
+position = Vector2(-6, 6)
+scale = Vector2(0.59375, 0.59375)
+texture = ExtResource("7_mt1eo")
+script = ExtResource("11_xc6wr")
+item_id = "sporting"
+spriteinactive = ExtResource("7_mt1eo")
+
+[node name="ColorRect2" type="ColorRect" parent="ScrollContainer/VBoxContainer/Control/Chat2"]
+z_index = -100
+offset_left = 36.0
+offset_top = -8.0
+offset_right = 636.0
+offset_bottom = 32.0
+scale = Vector2(1, 1.2)
+color = Color(0.956296, 0.855435, 0.805649, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="ScrollContainer/VBoxContainer/Control/Chat2"]
+z_index = -100
+offset_left = 36.0
+offset_top = -33.0
+offset_right = 380.39
+offset_bottom = 7.0
+scale = Vector2(0.31, 0.63)
+color = Color(0.885054, 0.856298, 0.998264, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Chat3" type="Node2D" parent="ScrollContainer/VBoxContainer/Control"]
+position = Vector2(98, 361)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Control/Chat3"]
+offset_left = 42.635
+offset_top = -31.675
+offset_right = 642.635
+offset_bottom = 1098.32
+pivot_offset = Vector2(550, 565)
+theme_override_fonts/normal_font = ExtResource("1_24yh5")
+theme_override_fonts/italics_font = ExtResource("2_xk357")
+theme_override_fonts/bold_italics_font = ExtResource("3_vnxwk")
+theme_override_fonts/bold_font = ExtResource("4_xc6wr")
+bbcode_enabled = true
+text = "[color=#000000][font_size=22][b]Blutarc[/b][/font_size]
+idk about you winning but i'm winning every day *\\('º')/*
+stay mad lolololol
+[/color]"
+
+[node name="Receptor" parent="ScrollContainer/VBoxContainer/Control/Chat3" instance=ExtResource("7_djfqq")]
+position = Vector2(-6, 6)
+scale = Vector2(0.59375, 0.59375)
+texture = ExtResource("7_mt1eo")
+script = ExtResource("11_xc6wr")
+item_id = "porto"
+spriteinactive = ExtResource("7_mt1eo")
+
+[node name="ColorRect2" type="ColorRect" parent="ScrollContainer/VBoxContainer/Control/Chat3"]
+z_index = -100
+offset_left = 36.0
+offset_top = -8.0
+offset_right = 636.0
+offset_bottom = 32.0
+scale = Vector2(1, 1.2)
+color = Color(0.956296, 0.855435, 0.805649, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="ScrollContainer/VBoxContainer/Control/Chat3"]
+z_index = -100
+offset_left = 36.0
+offset_top = -33.0
+offset_right = 336.0
+offset_bottom = 7.0
+scale = Vector2(0.31, 0.63)
+color = Color(0.885054, 0.856298, 0.998264, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Chat4" type="Node2D" parent="ScrollContainer/VBoxContainer/Control"]
+position = Vector2(98, 469)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Control/Chat4"]
+offset_left = 42.635
+offset_top = -31.675
+offset_right = 642.635
+offset_bottom = 1098.32
+pivot_offset = Vector2(550, 565)
+theme_override_fonts/normal_font = ExtResource("1_24yh5")
+theme_override_fonts/italics_font = ExtResource("2_xk357")
+theme_override_fonts/bold_italics_font = ExtResource("3_vnxwk")
+theme_override_fonts/bold_font = ExtResource("4_xc6wr")
+bbcode_enabled = true
+text = "[color=#000000][font_size=22][b]Redmond[/b][/font_size]
+shes talking about the website dumbass
+hopefully the admins get it fixed
+[/color]"
+
+[node name="Receptor" parent="ScrollContainer/VBoxContainer/Control/Chat4" instance=ExtResource("7_djfqq")]
+position = Vector2(-6, 6)
+scale = Vector2(0.59375, 0.59375)
+texture = ExtResource("7_mt1eo")
+script = ExtResource("11_xc6wr")
+item_id = "benfica"
+spriteinactive = ExtResource("7_mt1eo")
+
+[node name="ColorRect2" type="ColorRect" parent="ScrollContainer/VBoxContainer/Control/Chat4"]
+z_index = -100
+offset_left = 36.0
+offset_top = -8.0
+offset_right = 636.0
+offset_bottom = 32.0
+scale = Vector2(1, 1.2)
+color = Color(0.956296, 0.855435, 0.805649, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="ScrollContainer/VBoxContainer/Control/Chat4"]
+z_index = -100
+offset_left = 36.0
+offset_top = -33.0
+offset_right = 353.555
+offset_bottom = 7.0
+scale = Vector2(0.31, 0.63)
+color = Color(0.885054, 0.856298, 0.998264, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Chat5" type="Node2D" parent="ScrollContainer/VBoxContainer/Control"]
+position = Vector2(98, 576)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/Control/Chat5"]
+offset_left = 42.635
+offset_top = -31.675
+offset_right = 642.635
+offset_bottom = 1098.32
+pivot_offset = Vector2(550, 565)
+theme_override_fonts/normal_font = ExtResource("1_24yh5")
+theme_override_fonts/italics_font = ExtResource("2_xk357")
+theme_override_fonts/bold_italics_font = ExtResource("3_vnxwk")
+theme_override_fonts/bold_font = ExtResource("4_xc6wr")
+bbcode_enabled = true
+text = "[color=#000000][font_size=22][b]Bob[/b][/font_size]
+Impossible, Sophie mentioned the \"championship\". It is only obvious that she would
+be talking about the actual game. Rest in Peace, sportsforum.net.
+[/color]"
+
+[node name="Receptor" parent="ScrollContainer/VBoxContainer/Control/Chat5" instance=ExtResource("7_djfqq")]
+position = Vector2(-6, 6)
+scale = Vector2(0.59375, 0.59375)
+texture = ExtResource("7_mt1eo")
+script = ExtResource("11_xc6wr")
+item_id = "porto"
+spriteinactive = ExtResource("7_mt1eo")
+
+[node name="ColorRect2" type="ColorRect" parent="ScrollContainer/VBoxContainer/Control/Chat5"]
+z_index = -100
+offset_left = 36.0
+offset_top = -8.0
+offset_right = 636.0
+offset_bottom = 32.0
+scale = Vector2(1, 1.2)
+color = Color(0.956296, 0.855435, 0.805649, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="ScrollContainer/VBoxContainer/Control/Chat5"]
+z_index = -100
+offset_left = 36.0
+offset_top = -33.0
+offset_right = 236.0
+offset_bottom = 7.0
+scale = Vector2(0.31, 0.63)
+color = Color(0.885054, 0.856298, 0.998264, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Sponsors" type="Node2D" parent="ScrollContainer/VBoxContainer/Control"]
+position = Vector2(368.26, 746.795)
+
+[node name="Porto2" parent="ScrollContainer/VBoxContainer/Control/Sponsors" instance=ExtResource("6_mt1eo")]
+position = Vector2(100, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_qtcsa")
+item_id = "porto"
+spriteinactive = ExtResource("11_qtcsa")
+spriteactive = ExtResource("12_fhulc")
+
+[node name="Porto" parent="ScrollContainer/VBoxContainer/Control/Sponsors" instance=ExtResource("6_mt1eo")]
+position = Vector2(100, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_qtcsa")
+item_id = "porto"
+spriteinactive = ExtResource("11_qtcsa")
+spriteactive = ExtResource("12_fhulc")
+
+[node name="Sporting" parent="ScrollContainer/VBoxContainer/Control/Sponsors" instance=ExtResource("6_mt1eo")]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_521in")
+item_id = "sporting"
+spriteinactive = ExtResource("7_vnxwk")
+spriteactive = ExtResource("12_fhulc")
+
+[node name="Benfica" parent="ScrollContainer/VBoxContainer/Control/Sponsors" instance=ExtResource("6_mt1eo")]
+position = Vector2(-100, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_vnxwk")
+item_id = "benfica"
+spriteinactive = ExtResource("7_vnxwk")
+spriteactive = ExtResource("12_fhulc")
+
+[node name="Star" parent="ScrollContainer/VBoxContainer/Control" instance=ExtResource("6_mt1eo")]
+position = Vector2(640, 60)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_fhulc")
+item_id = "star"
+spriteinactive = ExtResource("12_fhulc")
+spriteactive = ExtResource("12_fhulc")
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="."]
+visible = false
+offset_right = 759.0
+offset_bottom = 406.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer2/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_vnxwk")
+
+[node name="TextureRect2" type="TextureRect" parent="ScrollContainer2/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_vnxwk")
+
+[node name="TextureRect3" type="TextureRect" parent="ScrollContainer2/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_vnxwk")
+
+[node name="TextureRect4" type="TextureRect" parent="ScrollContainer2/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_vnxwk")
+
+[node name="TextureRect5" type="TextureRect" parent="ScrollContainer2/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_vnxwk")
+
+[node name="TextureRect6" type="TextureRect" parent="ScrollContainer2/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_vnxwk")
+
+[node name="TextureRect7" type="TextureRect" parent="ScrollContainer2/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_vnxwk")
+
+[node name="TextureRect8" type="TextureRect" parent="ScrollContainer2/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_vnxwk")
+
+[node name="TextureRect9" type="TextureRect" parent="ScrollContainer2/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_vnxwk")
+
+[node name="TextureRect10" type="TextureRect" parent="ScrollContainer2/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_vnxwk")

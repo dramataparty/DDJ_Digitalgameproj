@@ -12,6 +12,10 @@ signal deactivated(item_id: String)
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().has_method("get_id") and area.get_parent().get_id() == item_id:
 		area.get_parent().texture = area.get_parent().spriteactive
+		if area.get_parent().has_method("drop"):
+			area.get_parent().drop()
+			print("drop your weapons!")
+			area.get_parent().set("position", self.position)
 		if key_strength <= 0:
 			activated.emit(item_id)
 			texture = spriteactive

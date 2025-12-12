@@ -1,0 +1,14 @@
+[remap]
+
+importer="import_gif_to_animated_texture"
+type="AnimatedTexture"
+uid="uid://d2mt7nqi8cvh5"
+path="res://.godot/imported/gold_star.gif-90eb33e139b98109adab0091ef43b1e4.tres"
+
+[deps]
+
+source_file="res://assets/gold_star.gif"
+dest_files=["res://.godot/imported/gold_star.gif-90eb33e139b98109adab0091ef43b1e4.tres"]
+
+[params]
+
