@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://bh6b1qgdv0veu"]
+
+[ext_resource type="FontFile" uid="uid://6kk7ba3spm6v" path="res://ui/fonts/times-new-roman/times new roman.ttf" id="1_y0ykb"]
+[ext_resource type="FontFile" uid="uid://cr1ls3ix22pte" path="res://ui/fonts/times-new-roman/times new roman italic.ttf" id="2_frmhi"]
+[ext_resource type="FontFile" uid="uid://c7syq1g3bso8x" path="res://ui/fonts/times-new-roman/times new roman bold italic.ttf" id="3_yi7ra"]
+[ext_resource type="FontFile" uid="uid://cniakhl7e7u2q" path="res://ui/fonts/times-new-roman/times new roman bold.ttf" id="4_1rmu2"]
+[ext_resource type="PackedScene" uid="uid://dua0w85ns0get" path="res://assets/receptor.tscn" id="5_oo4nq"]
+[ext_resource type="Texture2D" uid="uid://wgibqrcws6lq" path="res://assets/broken_image.png" id="6_u50io"]
+[ext_resource type="Script" uid="uid://cw17vl1clebr4" path="res://scripts/receptor.gd" id="7_263ba"]
+
+[node name="OnlineSudokulvl" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 2.0
+offset_top = -120.0
+offset_right = 760.0
+offset_bottom = 665.0
+pivot_offset = Vector2(550, 565)
+theme_override_fonts/normal_font = ExtResource("1_y0ykb")
+theme_override_fonts/italics_font = ExtResource("2_frmhi")
+theme_override_fonts/bold_italics_font = ExtResource("3_yi7ra")
+theme_override_fonts/bold_font = ExtResource("4_1rmu2")
+bbcode_enabled = true
+text = "Insert funny sudoku grid, fake leaderboard etc, puzzle is punching in a correct line in the sudoku logo using the leaderboard numbers present in the corner of the screen.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[center][color=#ffffff]
+[font_size=36][b]Our Sponsors:[/b][/font_size]
+[/color][/center]"
+
+[node name="Receptor" parent="RichTextLabel" instance=ExtResource("5_oo4nq")]
+position = Vector2(211, 432)
+scale = Vector2(0.59375, 0.59375)
+texture = ExtResource("6_u50io")
+script = ExtResource("7_263ba")
+item_id = "star"
+spriteinactive = ExtResource("6_u50io")
+spriteactive = null

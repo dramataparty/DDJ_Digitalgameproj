@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://c4xid14yyhsll"
+path="res://.godot/imported/Sudoku_solved_by_bactracking.gif-1973055a82b27969ea676e2fd28d1bee.tres"
+
+[deps]
+
+source_file="res://Scenes/Punch-In Level/Sudoku_solved_by_bactracking.gif"
+dest_files=["res://.godot/imported/Sudoku_solved_by_bactracking.gif-1973055a82b27969ea676e2fd28d1bee.tres"]
+
+[params]
+
+frames_per_second=30
