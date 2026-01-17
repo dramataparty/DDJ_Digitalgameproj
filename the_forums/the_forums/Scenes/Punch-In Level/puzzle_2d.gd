@@ -7,22 +7,24 @@ extends Node2D
 @export var cell_scene: PackedScene
 @export var total_bombs := 3
 
-var bomb_cells := []
+var bomb_cells: Array = []
 var solved_count := 0
-
-func puzzle_solved():
-	print("All bombs buried!")
-	# Trigger next level, animation, sound, etc.
 
 func _ready():
 	spawn_grid()
 
+func puzzle_solved():
+	print("All bombs buried!")
+	# TODO: Trigger next level, animation, sound, etc.
+
 func spawn_grid():
-	# Hard-coded bomb positions for puzzle clarity
+	bomb_cells.clear()
+	solved_count = 0
+
 	var bomb_positions := [
 		Vector2i(1, 2),
 		Vector2i(3, 1),
-		Vector2i(4, 3)
+		Vector2i(4, 3),
 	]
 
 	for y in range(grid_height):
@@ -35,12 +37,10 @@ func spawn_grid():
 				cell.is_bomb_target = true
 				bomb_cells.append(cell)
 
+			cell.bomb_placed.connect(_on_bomb_placed)
 
-func check_puzzle_progress():
-	solved_count = 0
-	for cell in bomb_cells:
-		if cell.occupied:
-			solved_count += 1
-
-	if solved_count == total_bombs:
-		puzzle_solved()
+func _on_bomb_placed(cell):
+	if cell in bomb_cells:
+		solved_count += 1
+		if solved_count == total_bombs:
+			puzzle_solved()

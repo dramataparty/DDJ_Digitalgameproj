@@ -53,6 +53,9 @@ func _handle_drag_input(event: InputEventMouseButton):
 		drag_offset = global_position - event.position
 	else:
 		dragging = false
+		_try_drop_on_cell()
+
+
 
 
 func _process(_delta):
@@ -135,3 +138,15 @@ func _on_area_entered(area):
 func _on_area_exited(area):
 	if potential_target == area.get_parent():
 		potential_target = null
+
+
+
+func _try_drop_on_cell():
+	if not has_node("Area2D"):
+		return
+	var mine_area: Area2D = $Area2D
+	for area in mine_area.get_overlapping_areas():
+		if area.has_method("can_accept_object") and area.has_method("accept_object"):
+			if area.can_accept_object():
+				area.accept_object(self)
+				return

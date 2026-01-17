@@ -1,10 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6ffatiobhkuu"]
+[gd_scene load_steps=3 format=3 uid="uid://b6ffatiobhkuu"]
 
-[ext_resource type="Script" uid="uid://ckyq5x1uc0sfw" path="res://Scenes/Punch-In Level/grid_cell.gd" id="1_hhhgn"]
+[ext_resource type="Script" path="res://Scenes/Punch-In Level/grid_cell.gd" id="1"]
+
+[sub_resource type="RectangleShape2D" id="1"]
 
 [node name="GridCell" type="Area2D"]
-script = ExtResource("1_hhhgn")
+script = ExtResource("1")
+collision_layer = 1
+collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+centered = false

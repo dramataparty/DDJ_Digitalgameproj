@@ -1,20 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh6b1qgdv0veu"]
+[gd_scene load_steps=6 format=3 uid="uid://bh6b1qgdv0veu"]
 
-[ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="1_h5yph"]
-[ext_resource type="Script" uid="uid://vi25x1wp435a" path="res://scripts/all_in_one_object.gd" id="2_60hwq"]
-[ext_resource type="Script" uid="uid://bu4mbr2cyuqhe" path="res://Scenes/Punch-In Level/puzzle_2d.gd" id="3_us0bt"]
+[ext_resource type="PackedScene" path="res://assets/draggable.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/all_in_one_object.gd" id="2"]
+[ext_resource type="Script" path="res://Scenes/Punch-In Level/puzzle_2d.gd" id="3"]
 
-[sub_resource type="Theme" id="Theme_us0bt"]
+[sub_resource type="Theme" id="1"]
 
 [node name="OnlineSudokulvl" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -10
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 826.0
+offset_bottom = 574.0
+scale = Vector2(0.970068, 1.05014)
 
 [node name="Scoreboard" type="VBoxContainer" parent="."]
 offset_left = 218.0
 offset_top = 207.0
 offset_right = 478.0
 offset_bottom = 423.0
-tooltip_text = "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-theme = SubResource("Theme_us0bt")
+theme = SubResource("1")
 
 [node name="ColorRect" type="ColorRect" parent="Scoreboard"]
 layout_mode = 2
@@ -24,12 +31,11 @@ color = Color(0, 0.688021, 0.688021, 1)
 [node name="Row1" type="HBoxContainer" parent="Scoreboard"]
 layout_mode = 2
 
-[node name="Mine1" parent="Scoreboard/Row1" instance=ExtResource("1_h5yph")]
+[node name="Mine1" parent="Scoreboard/Row1" instance=ExtResource("1")]
 z_index = 5
 position = Vector2(-15, 17)
-texture = null
-script = ExtResource("2_60hwq")
-item_id = "key"
+script = ExtResource("2")
+item_id = "mine_1"
 min_z_index = -5
 max_z_index = 5
 z_step = 1
@@ -46,12 +52,11 @@ text = "67420"
 [node name="Row2" type="HBoxContainer" parent="Scoreboard"]
 layout_mode = 2
 
-[node name="Mine2" parent="Scoreboard/Row2" instance=ExtResource("1_h5yph")]
+[node name="Mine2" parent="Scoreboard/Row2" instance=ExtResource("1")]
 z_index = 5
 position = Vector2(-15, 17)
-texture = null
-script = ExtResource("2_60hwq")
-item_id = "key"
+script = ExtResource("2")
+item_id = "mine_2"
 min_z_index = -5
 max_z_index = 5
 z_step = 1
@@ -68,12 +73,11 @@ text = "69420"
 [node name="Row3" type="HBoxContainer" parent="Scoreboard"]
 layout_mode = 2
 
-[node name="Mine3" parent="Scoreboard/Row3" instance=ExtResource("1_h5yph")]
+[node name="Mine3" parent="Scoreboard/Row3" instance=ExtResource("1")]
 z_index = 5
 position = Vector2(-15, 17)
-texture = null
-script = ExtResource("2_60hwq")
-item_id = "key"
+script = ExtResource("2")
+item_id = "mine_3"
 min_z_index = -5
 max_z_index = 5
 z_step = 1
@@ -87,15 +91,7 @@ text = "John3"
 layout_mode = 2
 text = "66666"
 
-[node name="Panel" type="Panel" parent="."]
-z_index = -10
-offset_left = 6.0
-offset_top = 4.0
-offset_right = 826.0
-offset_bottom = 574.0
-scale = Vector2(0.970068, 1.05014)
-
 [node name="Puzzle2d" type="Node2D" parent="."]
-script = ExtResource("3_us0bt")
+script = ExtResource("3")
 
 [node name="Cells" type="Node2D" parent="Puzzle2d"]
