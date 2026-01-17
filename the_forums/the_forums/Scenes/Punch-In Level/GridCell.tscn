@@ -1,16 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6ffatiobhkuu"]
+[gd_scene load_steps=4 format=3 uid="uid://b6ffatiobhkuu"]
 
-[ext_resource type="Script" path="res://Scenes/Punch-In Level/grid_cell.gd" id="1"]
+[ext_resource type="Script" uid="uid://ckyq5x1uc0sfw" path="res://Scenes/Punch-In Level/grid_cell.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cfg4uojguhuvx" path="res://assets/Minesweeper_unopened_square.svg.png" id="2_ae2gn"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 
 [node name="GridCell" type="Area2D"]
 script = ExtResource("1")
-collision_layer = 1
-collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-10, -10)
+scale = Vector2(0.0195313, 0.0195313)
+texture = ExtResource("2_ae2gn")
 centered = false

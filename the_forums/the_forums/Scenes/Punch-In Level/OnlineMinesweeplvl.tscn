@@ -1,39 +1,35 @@
 [gd_scene load_steps=6 format=3 uid="uid://bh6b1qgdv0veu"]
 
-[ext_resource type="PackedScene" path="res://assets/draggable.tscn" id="1"]
-[ext_resource type="Script" path="res://scripts/all_in_one_object.gd" id="2"]
-[ext_resource type="Script" path="res://Scenes/Punch-In Level/puzzle_2d.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="1"]
+[ext_resource type="Script" uid="uid://vi25x1wp435a" path="res://scripts/all_in_one_object.gd" id="2"]
+[ext_resource type="Script" uid="uid://bu4mbr2cyuqhe" path="res://Scenes/Punch-In Level/puzzle_2d.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://b6ffatiobhkuu" path="res://Scenes/Punch-In Level/GridCell.tscn" id="4"]
 
 [sub_resource type="Theme" id="1"]
 
-[node name="OnlineSudokulvl" type="Node2D"]
+[node name="OnlineMinesweeplvl" type="Node2D"]
 
 [node name="Panel" type="Panel" parent="."]
-z_index = -10
-offset_left = 6.0
-offset_top = 4.0
-offset_right = 826.0
-offset_bottom = 574.0
-scale = Vector2(0.970068, 1.05014)
+offset_left = -2.0
+offset_top = 2.0
+offset_right = 804.0
+offset_bottom = 600.0
 
 [node name="Scoreboard" type="VBoxContainer" parent="."]
-offset_left = 218.0
-offset_top = 207.0
-offset_right = 478.0
-offset_bottom = 423.0
+offset_top = 80.0
+offset_right = 105.0
+offset_bottom = 167.0
 theme = SubResource("1")
 
 [node name="ColorRect" type="ColorRect" parent="Scoreboard"]
 layout_mode = 2
 mouse_filter = 2
-color = Color(0, 0.688021, 0.688021, 1)
 
 [node name="Row1" type="HBoxContainer" parent="Scoreboard"]
 layout_mode = 2
 
 [node name="Mine1" parent="Scoreboard/Row1" instance=ExtResource("1")]
-z_index = 5
-position = Vector2(-15, 17)
+scale = Vector2(0.1, 0.1)
 script = ExtResource("2")
 item_id = "mine_1"
 min_z_index = -5
@@ -54,7 +50,7 @@ layout_mode = 2
 
 [node name="Mine2" parent="Scoreboard/Row2" instance=ExtResource("1")]
 z_index = 5
-position = Vector2(-15, 17)
+scale = Vector2(0.1, 0.1)
 script = ExtResource("2")
 item_id = "mine_2"
 min_z_index = -5
@@ -75,7 +71,7 @@ layout_mode = 2
 
 [node name="Mine3" parent="Scoreboard/Row3" instance=ExtResource("1")]
 z_index = 5
-position = Vector2(-15, 17)
+scale = Vector2(0.1, 0.1)
 script = ExtResource("2")
 item_id = "mine_3"
 min_z_index = -5
@@ -92,6 +88,82 @@ layout_mode = 2
 text = "66666"
 
 [node name="Puzzle2d" type="Node2D" parent="."]
+position = Vector2(160, 180)
 script = ExtResource("3")
 
 [node name="Cells" type="Node2D" parent="Puzzle2d"]
+
+[node name="Cell_1_0" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(64, 0)
+
+[node name="Cell_2_0" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(128, 0)
+
+[node name="Cell_3_0" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(192, 0)
+
+[node name="Cell_4_0" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(256, 0)
+
+[node name="Cell_0_1" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(0, 64)
+
+[node name="Cell_1_1" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(64, 64)
+
+[node name="Cell_2_1" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(128, 64)
+
+[node name="Cell_3_1" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(192, 64)
+
+[node name="Cell_4_1" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(256, 64)
+
+[node name="Cell_0_2" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(0, 128)
+
+[node name="Cell_1_2" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(64, 128)
+
+[node name="Cell_2_2" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(128, 128)
+
+[node name="Cell_3_2" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(192, 128)
+
+[node name="Cell_4_2" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(256, 128)
+
+[node name="Cell_0_3" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(0, 192)
+
+[node name="Cell_1_3" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(64, 192)
+
+[node name="Cell_2_3" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(128, 192)
+
+[node name="Cell_3_3" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(192, 192)
+
+[node name="Cell_4_3" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(256, 192)
+
+[node name="Cell_0_4" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(0, 256)
+
+[node name="Cell_1_4" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(64, 256)
+
+[node name="Cell_2_4" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(128, 256)
+
+[node name="Cell_3_4" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(192, 256)
+
+[node name="Cell_4_4" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(256, 256)
+
+[node name="Cell_0_0" parent="Puzzle2d/Cells" instance=ExtResource("4")]
+position = Vector2(2, 2)
