@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var tutorial = load("res://Scenes/tutorial_page.tscn").instantiate()
 var sports = load("res://Scenes/Sports/Sports.tscn").instantiate()

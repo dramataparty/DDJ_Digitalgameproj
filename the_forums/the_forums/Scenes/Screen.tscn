@@ -30,11 +30,17 @@ popup/item_3/text = "Cut N' Fuse"
 popup/item_3/id = 3
 script = ExtResource("3_dw3bs")
 
-[node name="WebPage" type="Node2D" parent="."]
+[node name="WebPage" type="Control" parent="."]
+clip_children = 1
 z_index = -1
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_right = 759.0
+offset_bottom = 418.0
 script = ExtResource("3_tvs07")
 
 [node name="Page" parent="WebPage" instance_placeholder="res://Scenes/tutorial_page.tscn"]
 
 [connection signal="item_selected" from="OptionButton" to="OptionButton" method="_on_item_selected"]
-[connection signal="request_scene_change" from="WebPage/Page" to="WebPage" method="_on_page_request_scene_change"]

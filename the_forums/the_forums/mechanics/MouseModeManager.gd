@@ -1,6 +1,5 @@
 extends Node
 
-
 enum Mode { 
 	NORMAL, 
 	HAND, 
