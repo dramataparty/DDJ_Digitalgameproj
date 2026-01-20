@@ -2,6 +2,7 @@ extends Node2D
 
 var tutorial = load("res://Scenes/tutorial_page.tscn").instantiate()
 var sports = load("res://Scenes/Sports/Sports.tscn").instantiate()
+var minesweep = load("res://Scenes/Punch-In Level/OnlineMinesweeplvl.tscn").instantiate()
 
 var current_page : Variant = null
 
@@ -18,4 +19,4 @@ func _on_child_request_scene_change(new_scene_path: String):
 	load_webpage(page)
 	
 func _ready():
-	load_webpage(tutorial)
+	load_webpage(minesweep)
