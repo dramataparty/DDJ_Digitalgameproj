@@ -1,6 +1,4 @@
-
 extends Control
-
 
 @export var is_cut_piece := false # created by scissors
 @export var draggable := true
@@ -15,7 +13,7 @@ func _ready() -> void:
 	if size.x < 20 or size.y < 20:
 		size = Vector2(60, 40)
 	# Allows the control to pass mouse events down if not handled
-	mouse_filter = Control.MOUSE_FILTER_PASS
+	mouse_filter = Control.MOUSE_FILTER_STOP
 
 # This function should be connected to the 'mouse_entered' signal of the child ColorRect.
 func _on_color_rect_mouse_entered() -> void:
@@ -47,11 +45,7 @@ func _gui_input(event: InputEvent) -> void:
 					_drag_start = event.position 
 					_original_pos = position
 					get_viewport().set_input_as_handled()
-			
-		
-			
-			
-
+					
 	# Handle mouse movement while dragging
 	elif _dragging and event is InputEventMouseMotion:
 		# Use event.relative for simpler drag calculation, 
@@ -70,12 +64,6 @@ func _gui_input(event: InputEvent) -> void:
 	elif _dragging and event is InputEventMouseButton and !event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		_dragging = false
 		get_viewport().set_input_as_handled()
-
-
-
-
-
-
 
 # another Element (or the Page itself) accepts a cut fragment
 func accept_staple(piece: Control) -> void:
