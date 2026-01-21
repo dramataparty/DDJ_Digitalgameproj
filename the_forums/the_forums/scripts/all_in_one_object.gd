@@ -30,7 +30,7 @@ func _ready():
 ## =========================================================
 ## INPUT HANDLING
 ## =========================================================
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if not event is InputEventMouseButton:
 		return
 	
@@ -106,14 +106,19 @@ func _cut_item():
 	if cut_start == cut_end:
 		return
 
-	var shape := $Area2D/CollisionShape2D.shape
-	if not (shape is ConvexPolygonShape2D):
+	var shape: CollisionShape2D = $Area2D.get_node("CollisionShape2D")
+	if shape == null or shape.shape == null:
 		return
+
+	if not (shape.shape is ConvexPolygonShape2D):
+		return
+
+	var poly_shape: ConvexPolygonShape2D = shape.shape as ConvexPolygonShape2D
 
 	var local_start = to_local(cut_start)
 	var local_end = to_local(cut_end)
 
-	var orig_points: PackedVector2Array = shape.points
+	var orig_points: PackedVector2Array = poly_shape.points
 
 	var poly_a := PackedVector2Array()
 	var poly_b := PackedVector2Array()
@@ -121,8 +126,14 @@ func _cut_item():
 	if not _split_polygon_with_segment(orig_points, local_start, local_end, poly_a, poly_b):
 		return
 
-	var slice_a := _create_slice(poly_a)
-	var slice_b := _create_slice(poly_b)
+	var slice_a: Sprite2D = _create_slice(poly_a)
+	var slice_b: Sprite2D = _create_slice(poly_b)
+
+	if slice_a == null or slice_b == null:
+		return
+
+
+
 
 	var dir := (cut_end - cut_start).normalized()
 	slice_a.position += dir * 4
@@ -161,8 +172,6 @@ func _split_polygon_with_segment(
 	out_b.clear()
 
 	var dir := (e - s).normalized()
-
-	for i in range(points.size()):
 		var p1 := points[i]
 		var p2 := points[(i + 1) % points.size()]
 
@@ -175,7 +184,7 @@ func _split_polygon_with_segment(
 			out_b.append(p1)
 
 		if side1 * side2 < 0:
-			var hit := Geometry2D.segment_intersects_segment(s, e, p1, p2)
+			var hit: Vector2 = Geometry2D.segment_intersects_segment(s, e, p1, p2)
 			if hit != null:
 				out_a.append(hit)
 				out_b.append(hit)
@@ -186,9 +195,10 @@ func _split_polygon_with_segment(
 ## =========================================================
 ## STAPLING
 ## =========================================================
-func _on_area_entered(area):
+func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent() is Sprite2D and area.get_parent() != self:
-		potential_target = area.get_parent()
+		potential_target = area.get_parent() as Sprite2D
+
 		if is_split and potential_target.is_split:
 			_attach_item(potential_target)
 
