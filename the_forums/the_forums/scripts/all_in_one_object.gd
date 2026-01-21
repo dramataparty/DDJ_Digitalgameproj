@@ -146,17 +146,43 @@ func _create_slice(points: PackedVector2Array) -> Sprite2D:
 	if points.size() < 3:
 		return null
 
-	var slice := duplicate() as Sprite2D
+	# Deep duplicate the whole sprite tree
+	var slice := duplicate(DUPLICATE_USE_INSTANTIATION | DUPLICATE_SIGNALS | DUPLICATE_SCRIPTS) as Sprite2D
+	if slice == null:
+		return null
+
 	slice.name = name + "_slice"
 	slice.is_split = true
 
-	var col_shape := slice.get_node("Area2D/CollisionShape2D") as CollisionShape2D
-	var new_shape := ConvexPolygonShape2D.new()
-	new_shape.points = points
-	col_shape.shape = new_shape
-
+	# Add first so transforms & ownership are correct
 	get_parent().add_child(slice)
+
+	# Preserve global transform
+	slice.global_position = global_position
+	slice.global_rotation = global_rotation
+	slice.global_scale = global_scale
+
+	# Rebuild collision shape
+	var col_shape := slice.get_node("Area2D/CollisionShape2D") as CollisionShape2D
+	if col_shape:
+		var new_shape := ConvexPolygonShape2D.new()
+		new_shape.points = points
+		col_shape.shape = new_shape
+
+	# Ensure Area2D works like the original
+	if slice.has_node("Area2D"):
+		var area := slice.get_node("Area2D") as Area2D
+		area.monitoring = true
+		area.monitorable = true
+
+		# reconnect signals
+		if not area.area_entered.is_connected(slice._on_area_entered):
+			area.area_entered.connect(slice._on_area_entered)
+		if not area.area_exited.is_connected(slice._on_area_exited):
+			area.area_exited.connect(slice._on_area_exited)
+
 	return slice
+
 
 
 ## =========================================================
@@ -172,11 +198,13 @@ func _split_polygon_with_segment(
 	out_b.clear()
 
 	var dir := (e - s).normalized()
+
+	for i in points.size():
 		var p1 := points[i]
 		var p2 := points[(i + 1) % points.size()]
 
-		var side1 := sign(dir.cross(p1 - s))
-		var side2 := sign(dir.cross(p2 - s))
+		var side1 :float= sign(dir.cross(p1 - s))
+		var side2 :float= sign(dir.cross(p2 - s))
 
 		if side1 >= 0:
 			out_a.append(p1)
@@ -184,7 +212,7 @@ func _split_polygon_with_segment(
 			out_b.append(p1)
 
 		if side1 * side2 < 0:
-			var hit: Vector2 = Geometry2D.segment_intersects_segment(s, e, p1, p2)
+			var hit: Variant = Geometry2D.segment_intersects_segment(s, e, p1, p2)
 			if hit != null:
 				out_a.append(hit)
 				out_b.append(hit)

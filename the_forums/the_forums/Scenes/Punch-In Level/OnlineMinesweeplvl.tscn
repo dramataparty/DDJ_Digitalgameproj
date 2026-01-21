@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bh6b1qgdv0veu"]
+[gd_scene load_steps=9 format=3 uid="uid://bh6b1qgdv0veu"]
 
 [ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="1"]
 [ext_resource type="Script" uid="uid://vi25x1wp435a" path="res://scripts/all_in_one_object.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://dtcnmr50sh6r1" path="res://Scenes/Punch-In Level/pngtree-cartoon-hand-painted-explosive-bomb-png-image_4157438.png" id="2_t4aqr"]
 [ext_resource type="Script" uid="uid://bu4mbr2cyuqhe" path="res://Scenes/Punch-In Level/puzzle_2d.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://b6ffatiobhkuu" path="res://Scenes/Punch-In Level/GridCell.tscn" id="4"]
 [ext_resource type="Script" uid="uid://ci6t2u1x34h2o" path="res://Scenes/Punch-In Level/cells.gd" id="4_chcx2"]
@@ -22,8 +23,9 @@ theme = SubResource("1")
 layout_mode = 2
 
 [node name="Mine1" parent="Scoreboard/Row1" instance=ExtResource("1")]
-position = Vector2(-13, 13)
-scale = Vector2(0.1, 0.1)
+position = Vector2(-12.5, 12)
+scale = Vector2(0.05, 0.047)
+texture = ExtResource("2_t4aqr")
 script = ExtResource("2")
 item_id = "mine_1"
 min_z_index = -5
@@ -45,7 +47,8 @@ layout_mode = 2
 [node name="Mine2" parent="Scoreboard/Row2" instance=ExtResource("1")]
 z_index = 5
 position = Vector2(-12, 14)
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_t4aqr")
 script = ExtResource("2")
 item_id = "mine_2"
 min_z_index = -5
@@ -67,7 +70,8 @@ layout_mode = 2
 [node name="Mine3" parent="Scoreboard/Row3" instance=ExtResource("1")]
 z_index = 5
 position = Vector2(-11, 13)
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_t4aqr")
 script = ExtResource("2")
 item_id = "mine_3"
 min_z_index = -5
@@ -167,10 +171,10 @@ position = Vector2(2, 2)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -10
-offset_left = -2.0
-offset_top = 2.0
-offset_right = 797.0
-offset_bottom = 963.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 803.0
+offset_bottom = 965.0
 mouse_filter = 2
 color = Color(0.626214, 0.0006772, 0.701827, 1)
 

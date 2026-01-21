@@ -19,4 +19,4 @@ func _on_child_request_scene_change(new_scene_path: String):
 	load_webpage(page)
 	
 func _ready():
-	load_webpage(minesweep)
+	load_webpage(tutorial)

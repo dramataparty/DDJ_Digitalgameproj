@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bbiychoctjnyo"]
+
+[node name="Pklvl" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 798.0
+offset_bottom = 597.0
+color = Color(0.416865, 0, 0, 1)
