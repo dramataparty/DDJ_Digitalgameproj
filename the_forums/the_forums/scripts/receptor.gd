@@ -12,7 +12,7 @@ signal deactivated(item_id: String)
 		
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var item = area.get_parent()
-	if item.has_method("get_id"):
+	if "item_id" in item:
 
 		# Snap to the center of THIS Sprite2D
 		item.global_position = global_position
@@ -21,7 +21,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		if ("dragging" in item):
 			item.dragging = false
 
-	if (item.get_id() == item_id):
+	if "item_id" in item and item.item_id == item_id:
 		# Update visuals
 		item.texture = item.spriteactive
 		if key_strength <= 0:

@@ -2,20 +2,23 @@ extends Sprite2D
 
 ## ---- Exported Properties ----
 @export var item_id: String = ""
-@export var spriteinactive: CompressedTexture2D
-@export var spriteactive: CompressedTexture2D
+@export var spriteinactive: Texture2D
+@export var spriteactive: Texture2D
 
+signal stapled_to(other: Sprite2D)
 @export var min_z_index := -5
 @export var max_z_index := 5
 @export var z_step := 1
 
-@export var is_split := false
+var is_split := false
 @export var item_connection_point: Node2D
 
 ## ---- State ----
 var dragging := false
 var drag_offset := Vector2.ZERO
 var potential_target: Sprite2D = null
+var can_staple := false
+var staple_lock := false
 
 
 ## =========================================================
@@ -42,7 +45,7 @@ func _input(event: InputEvent) -> void:
 			_handle_drag_input(event)
 		Mouse.Mode.HAMMER_PLIERS:
 			_handle_hammer_input(event)
-		Mouse.Mode.SCISSORS_STAPLERS:
+		Mouse.Mode.SCISSORS:
 			_handle_scissors_input(event)
 
 
@@ -55,9 +58,11 @@ func _handle_drag_input(event: InputEventMouseButton):
 
 	if event.pressed:
 		dragging = true
+		can_staple = true
 		drag_offset = global_position - event.position
 	else:
 		dragging = false
+		can_staple = false
 
 
 func _process(_delta):
@@ -83,164 +88,152 @@ func _change_z(amount: int):
 
 
 ## =========================================================
-## SCISSORS MODE
+## SCISSORS MODE (on clicking the object, split it into two smaller objects down the middle, each should look like the right/left half of the original, their creation should be logged in command line for better use)
 ## =========================================================
-var cut_start: Vector2
-var cut_end: Vector2
-var is_cutting := false
-
 
 func _handle_scissors_input(event: InputEventMouseButton):
-	if event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			is_cutting = true
-			cut_start = get_global_mouse_position()
-		else:
-			if is_cutting:
-				is_cutting = false
-				cut_end = get_global_mouse_position()
-				_cut_item()
-
+	if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		_cut_item()
+		get_viewport().set_input_as_handled()
 
 func _cut_item():
-	if cut_start == cut_end:
+	# make resulting item id be the itemid of the original + rh or lh depending on the half
+	# --- block reattach for one frame ---
+	staple_lock = true
+	await get_tree().process_frame
+	staple_lock = false
+
+	# --- safety guards ---
+	if is_split:
 		return
 
-	var shape: CollisionShape2D = $Area2D.get_node("CollisionShape2D")
-	if shape == null or shape.shape == null:
+	if not texture:
 		return
 
-	if not (shape.shape is ConvexPolygonShape2D):
+	var parent := get_parent()
+	if not parent:
 		return
 
-	var poly_shape: ConvexPolygonShape2D = shape.shape as ConvexPolygonShape2D
-
-	var local_start = to_local(cut_start)
-	var local_end = to_local(cut_end)
-
-	var orig_points: PackedVector2Array = poly_shape.points
-
-	var poly_a := PackedVector2Array()
-	var poly_b := PackedVector2Array()
-
-	if not _split_polygon_with_segment(orig_points, local_start, local_end, poly_a, poly_b):
+	var tex_size := texture.get_size()
+	if tex_size.x < 2:
 		return
 
-	var slice_a: Sprite2D = _create_slice(poly_a)
-	var slice_b: Sprite2D = _create_slice(poly_b)
+	# --- duplicate ---
+	var new_half = duplicate(7)
+	new_half.init_child_nodes()
+	new_half.name = name + "_half"
+	new_half.item_id = item_id + "_half"
 
-	if slice_a == null or slice_b == null:
+	# --- spacing ---
+	var gap := 15.0
+	var offset := gap * 0.5
+	var dir := global_transform.x.normalized()
+
+	global_position -= dir * offset
+	new_half.global_position = global_position + dir * gap
+
+	# --- calculate cut ---
+	var left_w := tex_size.x / 2
+	var right_w := tex_size.x - left_w
+
+	# --- Left crop (this) ---
+	texture = _crop_texture(texture, Rect2i(0, 0, left_w, tex_size.y))
+
+	if spriteinactive:
+		spriteinactive = _crop_texture(spriteinactive, Rect2i(0, 0, left_w, spriteinactive.get_size().y))
+	if spriteactive:
+		spriteactive = _crop_texture(spriteactive, Rect2i(0, 0, left_w, spriteactive.get_size().y))
+
+	_resize_collision_to_texture()
+	is_split = true
+
+	# --- Right crop (new) ---
+	new_half.texture = _crop_texture(new_half.texture, Rect2i(left_w, 0, right_w, tex_size.y))
+
+	if new_half.spriteinactive:
+		new_half.spriteinactive = _crop_texture(new_half.spriteinactive, Rect2i(left_w, 0, right_w, new_half.spriteinactive.get_size().y))
+	if new_half.spriteactive:
+		new_half.spriteactive = _crop_texture(new_half.spriteactive, Rect2i(left_w, 0, right_w, new_half.spriteactive.get_size().y))
+
+	new_half._resize_collision_to_texture()
+	new_half.is_split = true
+
+	parent.add_child(new_half)
+
+	# --- debug ---
+	print("CUT:", item_id, "→", name, "and", new_half.name)
+	print(" Left size:", texture.get_size(), " Right size:", new_half.texture.get_size())
+
+
+
+func init_child_nodes():
+	if has_node("Area2D/CollisionShape2D"):
+		$Area2D/CollisionShape2D.shape = $Area2D/CollisionShape2D.shape.duplicate()
+
+	if texture:
+		texture = texture.duplicate()
+	if spriteinactive:
+		spriteinactive = spriteinactive.duplicate()
+	if spriteactive:
+		spriteactive = spriteactive.duplicate()
+
+	return self
+
+
+func _crop_right():
+	if not texture:
 		return
 
+	var size = texture.get_size()
+	var half_w := int((texture.get_size().x + 1) / 2)  # Consistent calc
+	texture = _crop_texture(texture, Rect2i(texture.get_size().x - half_w, 0, half_w, size.y))
+
+	if spriteinactive:
+		spriteinactive = _crop_texture(spriteinactive, Rect2i(half_w, 0, half_w, spriteinactive.get_size().y))
+
+	if spriteactive:
+		spriteactive = _crop_texture(spriteactive, Rect2i(half_w, 0, half_w, spriteactive.get_size().y))
+
+	_resize_collision_to_texture()
 
 
+func _crop_texture(tex: Texture2D, region: Rect2i) -> Texture2D:
+	var src: Image = tex.get_image()
+	var dst := Image.create(region.size.x, region.size.y, false, src.get_format())
+	dst.blit_rect(src, region, Vector2i.ZERO)
+	return ImageTexture.create_from_image(dst)
 
-	var dir := (cut_end - cut_start).normalized()
-	slice_a.position += dir * 4
-	slice_b.position -= dir * 4
 
-	queue_free()
+func _resize_collision_to_texture():
+	if has_node("Area2D/CollisionShape2D") and $Area2D/CollisionShape2D.shape is RectangleShape2D:
+		var shape := $Area2D/CollisionShape2D.shape as RectangleShape2D
+		if texture:
+			shape.size = texture.get_size()
 
-
-func _create_slice(points: PackedVector2Array) -> Sprite2D:
-	if points.size() < 3:
-		return null
-
-	# Deep duplicate the whole sprite tree
-	var slice := duplicate(DUPLICATE_USE_INSTANTIATION | DUPLICATE_SIGNALS | DUPLICATE_SCRIPTS) as Sprite2D
-	if slice == null:
-		return null
-
-	slice.name = name + "_slice"
-	slice.is_split = true
-
-	# Add first so transforms & ownership are correct
-	get_parent().add_child(slice)
-
-	# Preserve global transform
-	slice.global_position = global_position
-	slice.global_rotation = global_rotation
-	slice.global_scale = global_scale
-
-	# Rebuild collision shape
-	var col_shape := slice.get_node("Area2D/CollisionShape2D") as CollisionShape2D
-	if col_shape:
-		var new_shape := ConvexPolygonShape2D.new()
-		new_shape.points = points
-		col_shape.shape = new_shape
-
-	# Ensure Area2D works like the original
-	if slice.has_node("Area2D"):
-		var area := slice.get_node("Area2D") as Area2D
-		area.monitoring = true
-		area.monitorable = true
-
-		# reconnect signals
-		if not area.area_entered.is_connected(slice._on_area_entered):
-			area.area_entered.connect(slice._on_area_entered)
-		if not area.area_exited.is_connected(slice._on_area_exited):
-			area.area_exited.connect(slice._on_area_exited)
-
-	return slice
 
 
 
 ## =========================================================
-## POLYGON SPLIT
-## =========================================================
-func _split_polygon_with_segment(
-	points: PackedVector2Array,
-	s: Vector2, e: Vector2,
-	out_a: PackedVector2Array,
-	out_b: PackedVector2Array
-) -> bool:
-	out_a.clear()
-	out_b.clear()
-
-	var dir := (e - s).normalized()
-
-	for i in points.size():
-		var p1 := points[i]
-		var p2 := points[(i + 1) % points.size()]
-
-		var side1 :float= sign(dir.cross(p1 - s))
-		var side2 :float= sign(dir.cross(p2 - s))
-
-		if side1 >= 0:
-			out_a.append(p1)
-		if side1 <= 0:
-			out_b.append(p1)
-
-		if side1 * side2 < 0:
-			var hit: Variant = Geometry2D.segment_intersects_segment(s, e, p1, p2)
-			if hit != null:
-				out_a.append(hit)
-				out_b.append(hit)
-
-	return out_a.size() >= 3 and out_b.size() >= 3
-
-
-## =========================================================
-## STAPLING
+## STAPLING/Attaching items to eachother (automatically happens on drag if the object was created via a cut)
 ## =========================================================
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent() is Sprite2D and area.get_parent() != self:
 		potential_target = area.get_parent() as Sprite2D
 
-		if is_split and potential_target.is_split:
+		if can_staple and dragging and is_split and potential_target.is_split:
 			_attach_item(potential_target)
+
 
 
 func _on_area_exited(area):
 	if potential_target == area.get_parent():
 		potential_target = null
 
-
 func _attach_item(other: Sprite2D):
 	if other.get_parent() == self:
 		return
-
 	other.reparent(self)
+	emit_signal("stapled_to", other)
 	if item_connection_point:
 		other.global_position = item_connection_point.global_position
 

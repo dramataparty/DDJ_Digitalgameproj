@@ -26,7 +26,7 @@ popup/item_1/text = "Drag"
 popup/item_1/id = 1
 popup/item_2/text = "Z-Shift"
 popup/item_2/id = 2
-popup/item_3/text = "Cut N' Fuse"
+popup/item_3/text = "Cut"
 popup/item_3/id = 3
 script = ExtResource("3_dw3bs")
 

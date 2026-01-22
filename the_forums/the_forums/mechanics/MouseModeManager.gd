@@ -7,7 +7,7 @@ enum Mode {
 	NORMAL, 
 	HAND, 
 	HAMMER_PLIERS, 
-	SCISSORS_STAPLERS
+	SCISSORS
 }
 
 signal mode_changed(new_mode)
@@ -40,7 +40,7 @@ var mode_emojis = {
 	Mode.NORMAL: "🖱️",
 	Mode.HAND: "✋",
 	Mode.HAMMER_PLIERS: "🔨🔧",
-	Mode.SCISSORS_STAPLERS: "✂️📎"
+	Mode.SCISSORS: "✂️📎"
 }
 
 var action_emojis = {

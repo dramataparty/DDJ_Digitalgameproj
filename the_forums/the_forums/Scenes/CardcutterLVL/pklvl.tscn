@@ -1,8 +1,43 @@
-[gd_scene format=3 uid="uid://bbiychoctjnyo"]
+[gd_scene load_steps=5 format=3 uid="uid://bbiychoctjnyo"]
+
+[ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="1_hh7ay"]
+[ext_resource type="Script" uid="uid://dtskw8bguaxeb" path="res://Scenes/CardcutterLVL/poker_puzzle.gd" id="1_s5non"]
+[ext_resource type="Texture2D" uid="uid://dtcnmr50sh6r1" path="res://Scenes/Punch-In Level/pngtree-cartoon-hand-painted-explosive-bomb-png-image_4157438.png" id="2_s5non"]
+[ext_resource type="Script" uid="uid://vi25x1wp435a" path="res://scripts/all_in_one_object.gd" id="3_bk5xa"]
 
 [node name="Pklvl" type="Node2D"]
+position = Vector2(192, 214)
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 798.0
-offset_bottom = 597.0
+offset_left = -189.0
+offset_top = -216.0
+offset_right = 609.0
+offset_bottom = 381.0
 color = Color(0.416865, 0, 0, 1)
+
+[node name="PokerPuzzle" type="Node2D" parent="."]
+script = ExtResource("1_s5non")
+
+[node name="Card1" parent="PokerPuzzle" instance=ExtResource("1_hh7ay")]
+position = Vector2(20, -8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_s5non")
+script = ExtResource("3_bk5xa")
+item_id = "card_1"
+min_z_index = -5
+max_z_index = 5
+z_step = 1
+
+[node name="Card2" parent="PokerPuzzle" instance=ExtResource("1_hh7ay")]
+position = Vector2(282, 0.999999)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_s5non")
+script = ExtResource("3_bk5xa")
+item_id = "card_2"
+min_z_index = -5
+max_z_index = 5
+z_step = 1
+
+[node name="OpponentHand" type="Sprite2D" parent="PokerPuzzle"]
+
+[node name="TableCards" type="Sprite2D" parent="PokerPuzzle"]
