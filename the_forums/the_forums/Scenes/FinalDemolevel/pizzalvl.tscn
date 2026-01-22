@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bundfh2bbu8mr"]
+
+[ext_resource type="Script" uid="uid://btba4dflfm7g3" path="res://Scenes/FinalDemolevel/pizzalvl.gd" id="1_25ap0"]
+
+[node name="Pizzalvl" type="Node2D"]
+script = ExtResource("1_25ap0")
