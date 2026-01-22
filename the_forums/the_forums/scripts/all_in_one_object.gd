@@ -122,14 +122,19 @@ func _cut_item():
 	var new_half = duplicate(7)
 	new_half.init_child_nodes()
 	new_half.name = name + "_half"
-	new_half.item_id = item_id + "_half"
+	item_id += "_lh"
+	new_half.item_id = item_id.replace("_lh", "_rh")
+
 
 	# --- spacing ---
 	var gap := 15.0
 	var offset := gap * 0.5
-	var dir := global_transform.x.normalized()
+	var dir := Vector2.RIGHT.rotated(global_rotation)
+
 
 	global_position -= dir * offset
+	position.x -= texture.get_size().x * 0.25
+	new_half.position.x += texture.get_size().x * 0.25
 	new_half.global_position = global_position + dir * gap
 
 	# --- calculate cut ---
@@ -159,6 +164,13 @@ func _cut_item():
 	new_half.is_split = true
 
 	parent.add_child(new_half)
+
+	var puzzle = get_tree().get_first_node_in_group("puzzle")
+	if puzzle:
+		new_half.stapled_to.connect(puzzle._on_card_stapled.bind(new_half))
+		stapled_to.connect(puzzle._on_card_stapled.bind(self))
+
+
 
 	# --- debug ---
 	print("CUT:", item_id, "→", name, "and", new_half.name)
@@ -232,7 +244,9 @@ func _on_area_exited(area):
 func _attach_item(other: Sprite2D):
 	if other.get_parent() == self:
 		return
+	var gpos = other.global_position
 	other.reparent(self)
+	other.global_position = gpos
 	emit_signal("stapled_to", other)
 	if item_connection_point:
 		other.global_position = item_connection_point.global_position

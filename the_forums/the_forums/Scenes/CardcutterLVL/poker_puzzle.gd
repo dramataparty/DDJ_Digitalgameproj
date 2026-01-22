@@ -4,35 +4,64 @@ signal puzzle_complete
 
 @export var card1_path: NodePath
 @export var card2_path: NodePath
-@export var item_connection_point: Node2D  # Optional: point where items should attach
 
 @onready var card1: Sprite2D = get_node_or_null(card1_path)
 @onready var card2: Sprite2D = get_node_or_null(card2_path)
 
 var completed := false
-	
-func _ready():
-	if card1:
-		card1.connect("stapled_to", Callable(self, "_on_card_stapled"))
-	if card2:
-		card2.connect("stapled_to", Callable(self, "_on_card_stapled"))
+var correct_matches := 0
 
-func _on_card_stapled(other: Sprite2D):
+
+func _ready():
+	# Register so cut pieces can find us
+	add_to_group("puzzle")
+
+	print("Puzzle ready. Card1:", card1, "Card2:", card2)
+
+	# Connect originals (before cut)
+	if card1:
+		card1.stapled_to.connect(_on_card_stapled.bind(card1))
+	if card2:
+		card2.stapled_to.connect(_on_card_stapled.bind(card2))
+
+
+# Called by Sprite pieces when stapled
+func _on_card_stapled(other: Sprite2D, sender: Sprite2D) -> void:
 	if completed:
 		return
 
-	# Check for the specific halves
-	var c1_half = card1.item_id + "_half"
-	var c2_half = card2.item_id + "_half"
+	if not other or not sender:
+		return
 
-	# Puzzle is complete if either combination is stapled
-	if (other.item_id == c2_half and card1.item_id == c1_half) or \
-	   (other.item_id == c1_half and card2.item_id == c2_half):
-		_complete_puzzle()
+	print("PUZZLE SIGNAL:", sender.item_id, "→", other.item_id)
+
+	if _is_correct_match(sender, other):
+		correct_matches += 1
+		print("Correct matches:", correct_matches)
+
+		if correct_matches >= 2:
+			_complete_puzzle()
+
+
+func _is_correct_match(a: Sprite2D, b: Sprite2D) -> bool:
+	# Ensure they are actually attached
+	if b.get_parent() != a and a.get_parent() != b:
+		return false
+
+	if (
+		a.item_id == "card_1_rh" and b.item_id == "card_2_lh"
+	) or (
+		a.item_id == "card_2_rh" and b.item_id == "card_1_lh"
+	):
+		return true
+
+	return false
+
 
 func _complete_puzzle() -> void:
 	if completed:
 		return
+
 	completed = true
-	print("Congratulations! Puzzle completed!")
+	print("✅ Congratulations! Puzzle completed!")
 	emit_signal("puzzle_complete")
