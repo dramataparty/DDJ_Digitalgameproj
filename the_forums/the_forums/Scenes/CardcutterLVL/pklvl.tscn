@@ -13,7 +13,7 @@
 [node name="Pklvl" type="Node2D"]
 position = Vector2(192, 214)
 script = ExtResource("1_tk0jg")
-progression_options = 3
+progression_options = 4
 next_scene = "res://Scenes/Win.tscn"
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -75,3 +75,4 @@ script = ExtResource("9_kik06")
 metadata/_edit_use_anchors_ = true
 
 [connection signal="puzzle_complete" from="PokerPuzzle" to="." method="_on_poker_puzzle_puzzle_complete"]
+[connection signal="pressed" from="nextButton" to="." method="_on_next_button_pressed"]

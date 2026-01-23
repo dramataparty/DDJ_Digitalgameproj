@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dm5lltw0gt80k"]
+[gd_scene load_steps=8 format=3 uid="uid://dm5lltw0gt80k"]
 
 [ext_resource type="Script" uid="uid://cqwd8c3jueuks" path="res://Scenes/general_win.gd" id="1_q85nr"]
 [ext_resource type="FontFile" uid="uid://6kk7ba3spm6v" path="res://ui/fonts/times-new-roman/times new roman.ttf" id="2_sc314"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://c7syq1g3bso8x" path="res://ui/fonts/times-new-roman/times new roman bold italic.ttf" id="4_o6xvn"]
 [ext_resource type="FontFile" uid="uid://cniakhl7e7u2q" path="res://ui/fonts/times-new-roman/times new roman bold.ttf" id="5_bt77o"]
 [ext_resource type="Texture2D" uid="uid://d2mt7nqi8cvh5" path="res://assets/gold_star.gif" id="7_2vnvq"]
+[ext_resource type="Script" uid="uid://2qmgq8yclo1r" path="res://scripts/next_button.gd" id="7_6wuka"]
 
 [node name="Page" type="Node2D"]
 script = ExtResource("1_q85nr")
@@ -55,3 +56,13 @@ texture = ExtResource("7_2vnvq")
 [node name="GoldStar5" type="Sprite2D" parent="."]
 position = Vector2(494, 163)
 texture = ExtResource("7_2vnvq")
+
+[node name="nextButton" type="Button" parent="."]
+visible = false
+offset_left = -364.0
+offset_top = -42.0
+offset_right = -236.0
+offset_bottom = -11.0
+text = "To Next Level >"
+script = ExtResource("7_6wuka")
+metadata/_edit_use_anchors_ = true
