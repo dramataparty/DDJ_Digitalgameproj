@@ -3,9 +3,8 @@ extends Button
 func _ready():
 	pressed.connect(_on_pressed)
 
-
 func _on_pressed():
-	reset()
+	forward()
 	
-func reset():
-		$"../WebPage".reload_webpage()
+func forward():
+		$"../WebPage".forward()

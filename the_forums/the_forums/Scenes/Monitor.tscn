@@ -5,20 +5,25 @@
 [ext_resource type="Texture2D" uid="uid://bidtgcuk2w5li" path="res://assets/xp.jpg" id="3_ytm8i"]
 
 [node name="Monitor" type="Node2D"]
+metadata/_edit_use_anchors_ = true
 
-[node name="Shell" type="Sprite2D" parent="."]
+[node name="WholeThing" type="Node2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(2, 2)
+
+[node name="Shell" type="Sprite2D" parent="WholeThing"]
 z_index = 30
-position = Vector2(409.689, 318.5)
+position = Vector2(1.68896, 30.5)
 scale = Vector2(0.710252, 0.707)
 texture = ExtResource("2_bd8wp")
 
-[node name="Screen" parent="." instance=ExtResource("2_ytm8i")]
+[node name="Screen" parent="WholeThing" instance=ExtResource("2_ytm8i")]
 z_index = 20
-position = Vector2(151, 142)
+position = Vector2(-257, -146)
 scale = Vector2(0.6629, 0.662901)
 
-[node name="Xp" type="Sprite2D" parent="."]
+[node name="Xp" type="Sprite2D" parent="WholeThing"]
 z_index = -100
-position = Vector2(407.5, 263.75)
+position = Vector2(-0.5, -24.25)
 scale = Vector2(1.054, 1.06)
 texture = ExtResource("3_ytm8i")

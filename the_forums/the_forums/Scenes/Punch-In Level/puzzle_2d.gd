@@ -95,13 +95,16 @@ func _update_stars():
 	gold_star_1.visible = solved_count >= 1
 	gold_star_2.visible = solved_count >= 2
 	gold_star_3.visible = solved_count >= 3
+	if(solved_count >= 3):
+		pass
 
 func _show_wrong_feedback():
-	print("Wrong answer")
-	wrong_label.text = "Wrong cell!"
-	wrong_label.visible = true
-	await get_tree().create_timer(1.0).timeout
-	wrong_label.visible = false
+	#print("Wrong answer")
+	#wrong_label.text = "Wrong cell!"
+	#wrong_label.visible = true
+	#await get_tree().create_timer(1.0).timeout
+	#wrong_label.visible = false
+	pass
 
 func _show_bury_hint():
 	print("Bombs in Minesweeper are buried!")

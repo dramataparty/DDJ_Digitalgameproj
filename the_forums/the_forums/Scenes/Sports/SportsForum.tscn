@@ -26,7 +26,6 @@ script = ExtResource("5_mljgp")
 min_z_index = -5
 max_z_index = 5
 z_step = 1
-is_split = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Header"]
 offset_right = 295.0

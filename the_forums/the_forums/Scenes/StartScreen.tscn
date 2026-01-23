@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bh3m7w4kvidje"]
+[gd_scene load_steps=7 format=3 uid="uid://bh3m7w4kvidje"]
 
+[ext_resource type="FontFile" uid="uid://6kk7ba3spm6v" path="res://ui/fonts/times-new-roman/times new roman.ttf" id="1_a2231"]
+[ext_resource type="Script" uid="uid://cn4vksp7x88rv" path="res://Scenes/start_screen.gd" id="1_ey7n4"]
 [ext_resource type="Script" uid="uid://bdtky4ws3018k" path="res://scripts/button.gd" id="1_ko4ly"]
+[ext_resource type="FontFile" uid="uid://cr1ls3ix22pte" path="res://ui/fonts/times-new-roman/times new roman italic.ttf" id="2_ey7n4"]
+[ext_resource type="FontFile" uid="uid://c7syq1g3bso8x" path="res://ui/fonts/times-new-roman/times new roman bold italic.ttf" id="3_6mw8b"]
+[ext_resource type="FontFile" uid="uid://cniakhl7e7u2q" path="res://ui/fonts/times-new-roman/times new roman bold.ttf" id="4_kehkj"]
 
 [node name="StartScreen" type="Control"]
 layout_mode = 3
@@ -9,27 +14,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ey7n4")
+progression_options = 1
 
-[node name="Label" type="Label" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 303.0
-offset_top = 96.0
-offset_right = 343.0
-offset_bottom = 119.0
-rotation = 0.00564966
-text = "The Forums
+offset_left = 21.0
+offset_top = 6.0
+offset_right = 721.0
+offset_bottom = 1136.0
+pivot_offset = Vector2(550, 565)
+theme_override_fonts/normal_font = ExtResource("1_a2231")
+theme_override_fonts/italics_font = ExtResource("2_ey7n4")
+theme_override_fonts/bold_italics_font = ExtResource("3_6mw8b")
+theme_override_fonts/bold_font = ExtResource("4_kehkj")
+bbcode_enabled = true
+text = "[color=#000000]
+[font_size=36][b]THE FORUMS[/b][/font_size]
+[/color]
+
 "
-horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Label"]
+[node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = -4.53101
-offset_top = 83.0269
-offset_right = 3.46899
-offset_bottom = 91.0269
-rotation = -0.0456283
+offset_left = 36.0
+offset_top = 103.0
+offset_right = 247.0
+offset_bottom = 174.0
 text = "Start
 "
 script = ExtResource("1_ko4ly")
 
-[connection signal="pressed" from="Label/Button" to="Label/Button" method="_on_pressed"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

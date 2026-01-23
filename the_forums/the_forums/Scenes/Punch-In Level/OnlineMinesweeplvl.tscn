@@ -1,92 +1,27 @@
-[gd_scene load_steps=10 format=3 uid="uid://bh6b1qgdv0veu"]
+[gd_scene load_steps=14 format=3 uid="uid://bh6b1qgdv0veu"]
 
 [ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="1"]
+[ext_resource type="Script" uid="uid://cqwd8c3jueuks" path="res://Scenes/general_win.gd" id="1_hgnwy"]
 [ext_resource type="Script" uid="uid://vi25x1wp435a" path="res://scripts/all_in_one_object.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://dtcnmr50sh6r1" path="res://Scenes/Punch-In Level/pngtree-cartoon-hand-painted-explosive-bomb-png-image_4157438.png" id="2_t4aqr"]
 [ext_resource type="Script" uid="uid://bu4mbr2cyuqhe" path="res://Scenes/Punch-In Level/puzzle_2d.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://b6ffatiobhkuu" path="res://Scenes/Punch-In Level/GridCell.tscn" id="4"]
 [ext_resource type="Script" uid="uid://ci6t2u1x34h2o" path="res://Scenes/Punch-In Level/cells.gd" id="4_chcx2"]
 [ext_resource type="Texture2D" uid="uid://d2mt7nqi8cvh5" path="res://assets/gold_star.gif" id="5_ct5w8"]
-[ext_resource type="Script" uid="uid://c0gkmtpbs7on8" path="res://Scenes/FinalDemolevel/resetlevel_button.gd" id="8_j0gg2"]
-
-[sub_resource type="Theme" id="1"]
+[ext_resource type="FontFile" uid="uid://6kk7ba3spm6v" path="res://ui/fonts/times-new-roman/times new roman.ttf" id="8_hgnwy"]
+[ext_resource type="FontFile" uid="uid://cr1ls3ix22pte" path="res://ui/fonts/times-new-roman/times new roman italic.ttf" id="9_v7gi2"]
+[ext_resource type="FontFile" uid="uid://c7syq1g3bso8x" path="res://ui/fonts/times-new-roman/times new roman bold italic.ttf" id="10_s4qr4"]
+[ext_resource type="FontFile" uid="uid://cniakhl7e7u2q" path="res://ui/fonts/times-new-roman/times new roman bold.ttf" id="11_iy02p"]
+[ext_resource type="Script" uid="uid://2qmgq8yclo1r" path="res://scripts/next_button.gd" id="13_v7gi2"]
 
 [node name="OnlineMinesweeplvl" type="Node2D"]
-
-[node name="Scoreboard" type="VBoxContainer" parent="."]
-offset_left = 664.0
-offset_top = 115.0
-offset_right = 769.0
-offset_bottom = 202.0
-theme = SubResource("1")
-
-[node name="Row1" type="HBoxContainer" parent="Scoreboard"]
-layout_mode = 2
-
-[node name="Mine1" parent="Scoreboard/Row1" instance=ExtResource("1")]
-position = Vector2(-12.5, 12)
-scale = Vector2(0.05, 0.047)
-texture = ExtResource("2_t4aqr")
-script = ExtResource("2")
-item_id = "mine_1"
-min_z_index = -5
-max_z_index = 5
-z_step = 1
-
-[node name="Label" type="Label" parent="Scoreboard/Row1"]
-layout_mode = 2
-text = "John1"
-
-[node name="Label2" type="Label" parent="Scoreboard/Row1"]
-layout_mode = 2
-text = "67420"
-
-[node name="Row2" type="HBoxContainer" parent="Scoreboard"]
-layout_mode = 2
-
-[node name="Mine2" parent="Scoreboard/Row2" instance=ExtResource("1")]
-z_index = 5
-position = Vector2(-12, 14)
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_t4aqr")
-script = ExtResource("2")
-item_id = "mine_2"
-min_z_index = -5
-max_z_index = 5
-z_step = 1
-
-[node name="Label" type="Label" parent="Scoreboard/Row2"]
-layout_mode = 2
-text = "John2"
-
-[node name="Label2" type="Label" parent="Scoreboard/Row2"]
-layout_mode = 2
-text = "69420"
-
-[node name="Row3" type="HBoxContainer" parent="Scoreboard"]
-layout_mode = 2
-
-[node name="Mine3" parent="Scoreboard/Row3" instance=ExtResource("1")]
-z_index = 5
-position = Vector2(-11, 13)
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_t4aqr")
-script = ExtResource("2")
-item_id = "mine_3"
-min_z_index = -5
-max_z_index = 5
-z_step = 1
-
-[node name="Label" type="Label" parent="Scoreboard/Row3"]
-layout_mode = 2
-text = "John3"
-
-[node name="Label2" type="Label" parent="Scoreboard/Row3"]
-layout_mode = 2
-text = "66666"
+script = ExtResource("1_hgnwy")
+progression_options = 3
+next_scene = "res://Scenes/FinalDemolevel/pizzalvl.tscn"
 
 [node name="Puzzle2d" type="Node2D" parent="."]
-position = Vector2(276, 127)
+position = Vector2(57, 134)
+scale = Vector2(3, 3)
 script = ExtResource("3")
 
 [node name="Cells" type="Node2D" parent="Puzzle2d"]
@@ -170,25 +105,28 @@ position = Vector2(2, 2)
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -10
 offset_left = 4.0
-offset_top = 4.0
+offset_top = 23.0
 offset_right = 803.0
-offset_bottom = 965.0
+offset_bottom = 984.0
 mouse_filter = 2
-color = Color(0.626214, 0.0006772, 0.701827, 1)
+color = Color(0.939652, 0.528893, 1, 1)
 
 [node name="GoldStar" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(170, 151)
+position = Vector2(471, 230)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_ct5w8")
 
 [node name="GoldStar2" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(464, 150)
+position = Vector2(471, 290)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_ct5w8")
 
 [node name="GoldStar3" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(316, 315)
+position = Vector2(471, 350)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_ct5w8")
 
 [node name="WrongLabel" type="Label" parent="."]
@@ -200,10 +138,82 @@ offset_right = 462.0
 offset_bottom = 80.0
 text = "WRONG ANSWER!"
 
-[node name="ResetlevelButton" type="Button" parent="."]
-offset_left = -37.0
-offset_top = 23.0
-offset_right = 37.0
-offset_bottom = 52.0
-text = "ResetLevel "
-script = ExtResource("8_j0gg2")
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 21.0
+offset_top = 6.0
+offset_right = 471.0
+offset_bottom = 135.0
+pivot_offset = Vector2(550, 565)
+theme_override_fonts/normal_font = ExtResource("8_hgnwy")
+theme_override_fonts/italics_font = ExtResource("9_v7gi2")
+theme_override_fonts/bold_italics_font = ExtResource("10_s4qr4")
+theme_override_fonts/bold_font = ExtResource("11_iy02p")
+bbcode_enabled = true
+text = "[color=#0c0c0c]
+[font_size=36][b]COUNTRE-STIRK!!!!!![/b][/font_size]
+[b]Ply CunterStrik 4 free!!!![/b]
+[/color]
+
+"
+
+[node name="Mine1" parent="." instance=ExtResource("1")]
+position = Vector2(405, 230)
+scale = Vector2(0.15, 0.141)
+texture = ExtResource("2_t4aqr")
+script = ExtResource("2")
+item_id = "mine_1"
+min_z_index = -5
+max_z_index = 5
+z_step = 1
+
+[node name="Mine2" parent="." instance=ExtResource("1")]
+position = Vector2(405, 290)
+scale = Vector2(0.15, 0.141)
+texture = ExtResource("2_t4aqr")
+script = ExtResource("2")
+item_id = "mine_3"
+min_z_index = -5
+max_z_index = 5
+z_step = 1
+
+[node name="Mine3" parent="." instance=ExtResource("1")]
+position = Vector2(405, 350)
+scale = Vector2(0.15, 0.141)
+texture = ExtResource("2_t4aqr")
+script = ExtResource("2")
+item_id = "mine_2"
+min_z_index = -5
+max_z_index = 5
+z_step = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 372.0
+offset_top = 60.0
+offset_right = 564.0
+offset_bottom = 268.0
+pivot_offset = Vector2(550, 565)
+theme_override_fonts/normal_font = ExtResource("8_hgnwy")
+theme_override_fonts/italics_font = ExtResource("9_v7gi2")
+theme_override_fonts/bold_italics_font = ExtResource("10_s4qr4")
+theme_override_fonts/bold_font = ExtResource("11_iy02p")
+bbcode_enabled = true
+text = "[color=#0c0c0c]
+[font_size=36][b]RULES[/b][/font_size]
+[b]- Find the bomb site
+- Plant the bomb
+- Kill the counter-terrorists
+- Win
+[/b]
+[/color]
+
+"
+
+[node name="nextButton" type="Button" parent="."]
+visible = false
+offset_left = 381.0
+offset_top = 387.0
+offset_right = 509.0
+offset_bottom = 418.0
+text = "To Next Level >"
+script = ExtResource("13_v7gi2")
+metadata/_edit_use_anchors_ = true

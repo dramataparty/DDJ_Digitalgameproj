@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bf635bapdvitt"]
+[gd_scene load_steps=15 format=3 uid="uid://bf635bapdvitt"]
 
 [ext_resource type="FontFile" uid="uid://6kk7ba3spm6v" path="res://ui/fonts/times-new-roman/times new roman.ttf" id="1_24yh5"]
 [ext_resource type="Script" uid="uid://dy48btblwgrhk" path="res://Scenes/Sports/level-win.gd" id="1_djfqq"]
@@ -14,10 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://c003kf70od2yv" path="res://assets/Bluelogo.png" id="11_qtcsa"]
 [ext_resource type="Script" uid="uid://cw17vl1clebr4" path="res://scripts/receptor.gd" id="11_xc6wr"]
 [ext_resource type="Texture2D" uid="uid://d2mt7nqi8cvh5" path="res://assets/gold_star.gif" id="12_fhulc"]
-[ext_resource type="Script" uid="uid://c0gkmtpbs7on8" path="res://Scenes/FinalDemolevel/resetlevel_button.gd" id="15_c57tr"]
 
 [node name="Page" type="Node2D"]
 script = ExtResource("1_djfqq")
+next_scene = "res://Scenes/Punch-In Level/OnlineMinesweeplvl.tscn"
+progression_options = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -100
@@ -29,7 +30,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 offset_right = 764.0
-offset_bottom = 411.0
+offset_bottom = 809.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
@@ -335,7 +336,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(368.26, 746.795)
 
 [node name="Porto2" parent="ScrollContainer/VBoxContainer/Control/Sponsors" instance=ExtResource("6_mt1eo")]
-position = Vector2(207.74, 3.20502)
+position = Vector2(-271.26, -378.795)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("11_qtcsa")
 item_id = "porto"
@@ -372,14 +373,6 @@ texture = ExtResource("12_fhulc")
 item_id = "star"
 spriteinactive = ExtResource("12_fhulc")
 spriteactive = ExtResource("12_fhulc")
-
-[node name="ResetlevelButton" type="Button" parent="."]
-offset_left = -37.0
-offset_top = 23.0
-offset_right = 37.0
-offset_bottom = 52.0
-text = "ResetLevel "
-script = ExtResource("15_c57tr")
 
 [connection signal="activated" from="ScrollContainer/VBoxContainer/Control/Chat/Receptor" to="." method="_on_receptor_activated"]
 [connection signal="deactivated" from="ScrollContainer/VBoxContainer/Control/Chat/Receptor" to="." method="_on_receptor_deactivated"]
