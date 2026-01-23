@@ -127,19 +127,21 @@ func _cut_item():
 
 
 	# --- spacing ---
-	var gap := 15.0
-	var offset := gap * 0.5
-	var dir := Vector2.RIGHT.rotated(global_rotation)
-
-
-	global_position -= dir * offset
-	position.x -= texture.get_size().x * 0.25
-	new_half.position.x += texture.get_size().x * 0.25
-	new_half.global_position = global_position + dir * gap
-
 	# --- calculate cut ---
 	var left_w := tex_size.x / 2
 	var right_w := tex_size.x - left_w
+	parent.add_child(new_half)
+	var gap := left_w/2
+	var dir := Vector2.RIGHT.rotated(global_rotation)
+
+	var center := global_position
+
+	global_position = center - dir * (gap * 0.5)
+	new_half.global_position = center + dir * (gap * 0.5)
+
+
+
+	
 
 	# --- Left crop (this) ---
 	texture = _crop_texture(texture, Rect2i(0, 0, left_w, tex_size.y))
@@ -163,7 +165,6 @@ func _cut_item():
 	new_half._resize_collision_to_texture()
 	new_half.is_split = true
 
-	parent.add_child(new_half)
 
 	var puzzle = get_tree().get_first_node_in_group("puzzle")
 	if puzzle:

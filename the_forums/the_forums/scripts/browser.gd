@@ -4,6 +4,7 @@ var tutorial = load("res://Scenes/tutorial_page.tscn").instantiate()
 var sports = load("res://Scenes/Sports/Sports.tscn").instantiate()
 var minesweep = load("res://Scenes/Punch-In Level/OnlineMinesweeplvl.tscn").instantiate()
 var poker = load("res://Scenes/CardcutterLVL/pklvl.tscn").instantiate()
+var pizza = load("res://Scenes/FinalDemolevel/pizzalvl.tscn").instantiate()
 
 var current_page : Variant = null
 
