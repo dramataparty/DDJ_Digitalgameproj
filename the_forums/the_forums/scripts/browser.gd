@@ -17,6 +17,7 @@ func load_webpage(page):
 	current_page.visible = false
 	if current_page.has_signal("request_scene_change"):
 		current_page.connect("request_scene_change", Callable(self, "_on_child_request_scene_change"))
+	$"../OptionButton".update_state(max(current_page.progression_options, $"../OptionButton".item_count))
 	$Timer.start(0.5)
 		
 func reload_webpage():

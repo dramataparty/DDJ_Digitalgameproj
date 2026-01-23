@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bh6b1qgdv0veu"]
+[gd_scene load_steps=14 format=3 uid="uid://bh6b1qgdv0veu"]
 
 [ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="1"]
 [ext_resource type="Script" uid="uid://cqwd8c3jueuks" path="res://Scenes/general_win.gd" id="1_hgnwy"]
@@ -12,9 +12,11 @@
 [ext_resource type="FontFile" uid="uid://cr1ls3ix22pte" path="res://ui/fonts/times-new-roman/times new roman italic.ttf" id="9_v7gi2"]
 [ext_resource type="FontFile" uid="uid://c7syq1g3bso8x" path="res://ui/fonts/times-new-roman/times new roman bold italic.ttf" id="10_s4qr4"]
 [ext_resource type="FontFile" uid="uid://cniakhl7e7u2q" path="res://ui/fonts/times-new-roman/times new roman bold.ttf" id="11_iy02p"]
+[ext_resource type="Script" uid="uid://2qmgq8yclo1r" path="res://scripts/next_button.gd" id="13_v7gi2"]
 
 [node name="OnlineMinesweeplvl" type="Node2D"]
 script = ExtResource("1_hgnwy")
+progression_options = 3
 next_scene = "res://Scenes/FinalDemolevel/pizzalvl.tscn"
 
 [node name="Puzzle2d" type="Node2D" parent="."]
@@ -111,19 +113,19 @@ color = Color(0.939652, 0.528893, 1, 1)
 
 [node name="GoldStar" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(405, 230)
+position = Vector2(471, 230)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_ct5w8")
 
 [node name="GoldStar2" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(405, 290)
+position = Vector2(471, 290)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_ct5w8")
 
 [node name="GoldStar3" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(405, 350)
+position = Vector2(471, 350)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_ct5w8")
 
@@ -205,3 +207,13 @@ text = "[color=#0c0c0c]
 [/color]
 
 "
+
+[node name="nextButton" type="Button" parent="."]
+visible = false
+offset_left = 381.0
+offset_top = 387.0
+offset_right = 509.0
+offset_bottom = 418.0
+text = "To Next Level >"
+script = ExtResource("13_v7gi2")
+metadata/_edit_use_anchors_ = true

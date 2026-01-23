@@ -5,9 +5,12 @@ var score = 0
 signal request_scene_change(new_scene_path: String)
 
 @export var next_scene: String
+@export var progression_options: int
 
 func go_to_next_scene():
 	emit_signal("request_scene_change", next_scene)
+	
+	
 
 func _ready() -> void:
 	$ScrollContainer/VBoxContainer/Control/Star.visible = false

@@ -95,7 +95,8 @@ func _update_stars():
 	gold_star_1.visible = solved_count >= 1
 	gold_star_2.visible = solved_count >= 2
 	gold_star_3.visible = solved_count >= 3
-	
+	if(solved_count >= 3):
+		pass
 
 func _show_wrong_feedback():
 	#print("Wrong answer")
