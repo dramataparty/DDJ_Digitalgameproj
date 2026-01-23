@@ -73,7 +73,7 @@ func _input(event: InputEvent) -> void:
 		reload_webpage()
 
 func _ready():
-	new_page(sports)
+	new_page(poker)
 
 func _on_timer_timeout() -> void:
 	print(history)
