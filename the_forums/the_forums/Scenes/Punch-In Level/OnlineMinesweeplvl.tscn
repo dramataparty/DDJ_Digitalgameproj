@@ -16,7 +16,8 @@
 
 [node name="OnlineMinesweeplvl" type="Node2D"]
 script = ExtResource("1_hgnwy")
-next_scene = "res://Scenes/FinalDemolevel/pizzalvl.tscn"
+progression_options = 3
+next_scene = "\"res://Scenes/CardcutterLVL/pklvl.tscn\""
 
 [node name="Puzzle2d" type="Node2D" parent="."]
 position = Vector2(57, 134)
@@ -209,10 +210,10 @@ text = "[color=#0c0c0c]
 
 [node name="nextButton" type="Button" parent="."]
 visible = false
-offset_left = 381.0
-offset_top = 387.0
-offset_right = 509.0
-offset_bottom = 418.0
+offset_left = 403.0
+offset_top = 34.0
+offset_right = 531.0
+offset_bottom = 65.0
 text = "To Next Level >"
 script = ExtResource("13_v7gi2")
 metadata/_edit_use_anchors_ = true
