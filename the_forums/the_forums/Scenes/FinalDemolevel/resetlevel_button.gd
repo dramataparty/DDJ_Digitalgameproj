@@ -5,4 +5,7 @@ func _ready():
 
 
 func _on_pressed():
-	get_tree().reload_current_scene()
+	reset()
+	
+func reset():
+		$"../WebPage".reload_webpage()

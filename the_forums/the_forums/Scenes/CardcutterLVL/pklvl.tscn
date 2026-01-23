@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbiychoctjnyo"]
+[gd_scene load_steps=5 format=3 uid="uid://bbiychoctjnyo"]
 
 [ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="1_hh7ay"]
 [ext_resource type="Script" uid="uid://dtskw8bguaxeb" path="res://Scenes/CardcutterLVL/poker_puzzle.gd" id="1_s5non"]
 [ext_resource type="Texture2D" uid="uid://dtcnmr50sh6r1" path="res://Scenes/Punch-In Level/pngtree-cartoon-hand-painted-explosive-bomb-png-image_4157438.png" id="2_s5non"]
 [ext_resource type="Script" uid="uid://vi25x1wp435a" path="res://scripts/all_in_one_object.gd" id="3_bk5xa"]
-[ext_resource type="Script" uid="uid://c0gkmtpbs7on8" path="res://Scenes/FinalDemolevel/resetlevel_button.gd" id="5_bk5xa"]
 
 [node name="Pklvl" type="Node2D"]
 position = Vector2(192, 214)
@@ -42,11 +41,3 @@ z_step = 1
 [node name="OpponentHand" type="Sprite2D" parent="PokerPuzzle"]
 
 [node name="TableCards" type="Sprite2D" parent="PokerPuzzle"]
-
-[node name="ResetlevelButton" type="Button" parent="."]
-offset_left = -37.0
-offset_top = 23.0
-offset_right = 37.0
-offset_bottom = 52.0
-text = "ResetLevel "
-script = ExtResource("5_bk5xa")
