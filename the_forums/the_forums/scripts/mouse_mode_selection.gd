@@ -16,6 +16,6 @@ func _on_item_selected(index):
 func update_state(state):
 	progress = max(state, progress)
 	for item in (self.item_count):
-		self.set_item_disabled(item+1, (item < progress))
+		self.set_item_disabled(item, (item >= progress))
 	#if level 1 not completed, lock hammer_pliers
 	#if level 2 not completed, lock scissors_staplers
