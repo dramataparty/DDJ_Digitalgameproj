@@ -73,7 +73,7 @@ func _input(event: InputEvent) -> void:
 		reload_webpage()
 
 func _ready():
-	new_page(tutorial)
+	new_page(start)
 
 func _on_timer_timeout() -> void:
 	print(history)
