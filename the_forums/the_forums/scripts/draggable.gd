@@ -2,22 +2,26 @@ extends Sprite2D
 
 var dragging := false
 var drag_offset := Vector2.ZERO
+var active := false
 
 @export var item_id: String = ""
 
-func _ready():
-	self.pickable = true  # IMPORTANT: lets the engine detect clicks on topmost sprite
+@export var spriteinactive: Texture2D
+@export var spriteactive: Texture2D
 
-func _input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			dragging = true
-			drag_offset = global_position - event.position
-			DragState.active_item = self
-		else:
-			dragging = false
-			if DragState.active_item == self:
-				DragState.active_item = null
+func get_id():
+	return item_id
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and Mouse.get_mode() == Mouse.Mode.HAND and active == false:
+			# Start dragging if clicked on the sprite
+			if event.pressed and get_rect().has_point(to_local(event.position)):
+				dragging = true
+				drag_offset = global_position - event.position
+			# Stop dragging
+			elif not event.pressed:
+				dragging = false
 
 func _process(delta):
 	if dragging:
