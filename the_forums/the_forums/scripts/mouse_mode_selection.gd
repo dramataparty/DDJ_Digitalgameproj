@@ -6,7 +6,6 @@ extends OptionButton
 func _ready() -> void:
 	update_state(progress)
 
-
 func _on_item_selected(index: int) -> void:
 	match index:
 		0: Mouse.set_mode(Mouse.Mode.NORMAL)

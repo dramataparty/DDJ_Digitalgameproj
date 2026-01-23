@@ -6,6 +6,7 @@ var sports = "res://Scenes/Sports/Sports.tscn"
 var minesweep = "res://Scenes/Punch-In Level/OnlineMinesweeplvl.tscn"
 var poker = "res://Scenes/CardcutterLVL/pklvl.tscn"
 var pizza = "res://Scenes/FinalDemolevel/pizzalvl.tscn"
+var win = "res://Scenes/Win.tscn"
 
 var history = []
 var pointer = 0
@@ -72,7 +73,7 @@ func _input(event: InputEvent) -> void:
 		reload_webpage()
 
 func _ready():
-	new_page(start)
+	new_page(sports)
 
 func _on_timer_timeout() -> void:
 	print(history)
