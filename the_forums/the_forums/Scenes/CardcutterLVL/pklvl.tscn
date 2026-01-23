@@ -19,7 +19,7 @@ color = Color(0.416865, 0, 0, 1)
 script = ExtResource("1_s5non")
 
 [node name="Card1" parent="PokerPuzzle" instance=ExtResource("1_hh7ay")]
-position = Vector2(20, -8)
+position = Vector2(18, 13)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_s5non")
 script = ExtResource("3_bk5xa")

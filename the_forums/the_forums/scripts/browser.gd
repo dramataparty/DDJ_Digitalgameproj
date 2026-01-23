@@ -42,11 +42,14 @@ func new_page(page : String):
 
 var current_page : Variant = null
 
+var current_page_path : String = ""
+
 func load_webpage(pager : String):
 	var page = load(pager).instantiate()
 	self.add_child(page)
 	if (current_page != null):
 		current_page.queue_free()
+	current_page_path = pager
 	current_page = page
 	current_page.visible = false
 	if current_page.has_signal("request_scene_change"):
@@ -55,7 +58,7 @@ func load_webpage(pager : String):
 	$Timer.start(0.5)
 		
 func reload_webpage():
-	load_webpage(current_page)
+	load_webpage(current_page_path)
 
 func _on_child_request_scene_change(page: String):
 	if(pointer < history.size()) :
