@@ -5,7 +5,7 @@ extends Node2D
 @onready var gold_star_1 := level_root.get_node("GoldStar")
 @onready var gold_star_2 := level_root.get_node("GoldStar2")
 @onready var gold_star_3 := level_root.get_node("GoldStar3")
-
+@export var is_level_complete = false
 @export var total_bombs := 3
 
 @export var bomb_cell_names: Array[StringName] = [
@@ -96,6 +96,7 @@ func _update_stars():
 	gold_star_2.visible = solved_count >= 2
 	gold_star_3.visible = solved_count >= 3
 	if(solved_count >= 3):
+		is_level_complete=true
 		pass
 
 func _show_wrong_feedback():

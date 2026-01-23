@@ -13,6 +13,8 @@
 [node name="Pklvl" type="Node2D"]
 position = Vector2(192, 214)
 script = ExtResource("1_tk0jg")
+progression_options = 3
+next_scene = "res://Scenes/Win.tscn"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -193.0
@@ -64,11 +66,12 @@ You Have: Two Of a Kind!
 Sorry!, You Lose!"
 
 [node name="nextButton" type="Button" parent="."]
-visible = false
-offset_left = 381.0
-offset_top = 387.0
-offset_right = 509.0
-offset_bottom = 418.0
+offset_left = 256.0
+offset_top = -118.0
+offset_right = 384.0
+offset_bottom = -87.0
 text = "To Next Level >"
 script = ExtResource("9_kik06")
 metadata/_edit_use_anchors_ = true
+
+[connection signal="puzzle_complete" from="PokerPuzzle" to="." method="_on_poker_puzzle_puzzle_complete"]

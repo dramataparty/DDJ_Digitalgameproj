@@ -12,7 +12,6 @@ signal puzzle_complete
 @export var completed: bool = false
 var correct_matches: int = 0
 
-
 func _ready() -> void:
 	# Register so cut pieces can find us
 	add_to_group("puzzle")

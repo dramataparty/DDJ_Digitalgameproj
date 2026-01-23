@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c54duj4ovwjhp"]
+[gd_scene load_steps=15 format=3 uid="uid://c54duj4ovwjhp"]
 
 [ext_resource type="FontFile" uid="uid://6kk7ba3spm6v" path="res://ui/fonts/times-new-roman/times new roman.ttf" id="1_hfqqn"]
 [ext_resource type="Script" uid="uid://cqwd8c3jueuks" path="res://Scenes/general_win.gd" id="1_qx2hg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://daebcm56y5mko" path="res://ui/scripts/html_to_bbcode.gd" id="5_h171a"]
 [ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="6_swonn"]
 [ext_resource type="PackedScene" uid="uid://dua0w85ns0get" path="res://assets/receptor.tscn" id="7_d73fv"]
+[ext_resource type="Script" uid="uid://bue04gy5b2maf" path="res://Scenes/node_2d.gd" id="8_l2yeb"]
 [ext_resource type="Texture2D" uid="uid://bjpls42x75gve" path="res://icon.svg" id="8_m4xos"]
 [ext_resource type="Script" uid="uid://2qmgq8yclo1r" path="res://scripts/next_button.gd" id="9_deugs"]
 [ext_resource type="Script" uid="uid://dnmxfp4eruncn" path="res://scripts/draggable.gd" id="9_l2yeb"]
@@ -49,7 +50,6 @@ pivot_offset = Vector2(575, 325)
 metadata/_edit_use_anchors_ = true
 
 [node name="nextButton" type="Button" parent="."]
-visible = false
 offset_left = 605.0
 offset_top = 22.0
 offset_right = 733.0
@@ -58,15 +58,18 @@ text = "To Next Level >"
 script = ExtResource("9_deugs")
 metadata/_edit_use_anchors_ = true
 
-[node name="Draggable" parent="." instance=ExtResource("6_swonn")]
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("8_l2yeb")
+
+[node name="Draggable" parent="Node2D" instance=ExtResource("6_swonn")]
 position = Vector2(325, 347)
 script = ExtResource("9_l2yeb")
 
-[node name="Receptor" parent="." instance=ExtResource("7_d73fv")]
+[node name="Receptor" parent="Node2D" instance=ExtResource("7_d73fv")]
 position = Vector2(571, 262)
 script = ExtResource("9_rqjya")
 spriteinactive = ExtResource("8_m4xos")
 spriteactive = ExtResource("9_qx2hg")
 
 [connection signal="pressed" from="nextButton" to="." method="_on_next_button_pressed"]
-[connection signal="activated" from="Receptor" to="." method="_on_receptor_activated"]
+[connection signal="activated" from="Node2D/Receptor" to="." method="_on_receptor_activated"]
