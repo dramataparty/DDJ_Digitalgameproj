@@ -241,11 +241,24 @@ func _on_area_entered(area: Area2D) -> void:
 	if staple_lock:
 		return
 
-	if area.get_parent() is Sprite2D and area.get_parent() != self:
-		potential_target = area.get_parent() as Sprite2D
+	var other := area.get_parent()
 
-		if can_staple and dragging and is_split and potential_target.is_split:
-			_attach_item(potential_target)
+	if other == self:
+		return
+
+	# Must be Sprite2D and running this script
+	if not other is Sprite2D:
+		return
+
+	# Must actually have is_split property
+	if not other.has_variable("is_split"):
+		return
+
+	potential_target = other
+
+	if can_staple and dragging and is_split and other.is_split:
+		_attach_item(other)
+
 
 
 

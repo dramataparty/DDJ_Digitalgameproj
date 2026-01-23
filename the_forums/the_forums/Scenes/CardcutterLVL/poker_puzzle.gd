@@ -9,7 +9,7 @@ signal puzzle_complete
 @onready var card1: Sprite2D = get_node_or_null(card1_path)
 @onready var card2: Sprite2D = get_node_or_null(card2_path)
 
-var completed: bool = false
+@export var completed: bool = false
 var correct_matches: int = 0
 
 

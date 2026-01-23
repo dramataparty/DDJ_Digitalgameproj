@@ -1,15 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbiychoctjnyo"]
+[gd_scene load_steps=10 format=3 uid="uid://bbiychoctjnyo"]
 
 [ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="1_hh7ay"]
 [ext_resource type="Script" uid="uid://dtskw8bguaxeb" path="res://Scenes/CardcutterLVL/poker_puzzle.gd" id="1_s5non"]
+[ext_resource type="Script" uid="uid://0bjv8tbt3t8h" path="res://Scenes/CardcutterLVL/pklvl.gd" id="1_tk0jg"]
 [ext_resource type="Script" uid="uid://vi25x1wp435a" path="res://scripts/all_in_one_object.gd" id="3_bk5xa"]
 [ext_resource type="Texture2D" uid="uid://vcssnr5svxud" path="res://Scenes/CardcutterLVL/Playing_card_heart_2.svg.png" id="3_ua52p"]
 [ext_resource type="Texture2D" uid="uid://dixwtcqb8tuy1" path="res://Scenes/CardcutterLVL/Playing_card_heart_4.svg.png" id="5_hprek"]
 [ext_resource type="Texture2D" uid="uid://blrauejlywjp7" path="res://Scenes/CardcutterLVL/TS-48071_CTV_Mapping_Project_Poker_Hands_-_Four_of_a_Kind-1624967050265_tcm1488-523630.png" id="6_tk0jg"]
 [ext_resource type="Texture2D" uid="uid://bdwpc7xmrsow5" path="res://Scenes/CardcutterLVL/Screenshot 2026-01-23 095035.png" id="7_kik06"]
+[ext_resource type="Script" uid="uid://2qmgq8yclo1r" path="res://scripts/next_button.gd" id="9_kik06"]
 
 [node name="Pklvl" type="Node2D"]
 position = Vector2(192, 214)
+script = ExtResource("1_tk0jg")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -193.0
@@ -59,3 +62,13 @@ offset_bottom = 224.0
 text = "Opponent Has: Three Of a Kind!
 You Have: Two Of a Kind!
 Sorry!, You Lose!"
+
+[node name="nextButton" type="Button" parent="."]
+visible = false
+offset_left = 381.0
+offset_top = 387.0
+offset_right = 509.0
+offset_bottom = 418.0
+text = "To Next Level >"
+script = ExtResource("9_kik06")
+metadata/_edit_use_anchors_ = true
