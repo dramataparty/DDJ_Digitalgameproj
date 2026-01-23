@@ -2,104 +2,57 @@ extends Node2D
 
 signal puzzle_complete
 
+var completed: bool = false
+
 @onready var pizza: Sprite2D = $PizzaSlice
 @onready var peperoner: Sprite2D = $Peperoner
+@onready var peperoner2: Sprite2D = $Peperoner2
 @onready var musroom: Sprite2D = $Musroom
+@onready var musroom2: Sprite2D = $Musroom2
 @onready var hint_label: Label = $HintLabel
 
-var completed := false
-
-
 func _ready():
-	print("Pizza puzzle ready.")
-	print("Pizza:", pizza, "Peperoner:", peperoner, "Musroom:", musroom)
-	set_process(true)
-	_hint_populate()
+	peperoner.stapled_to.connect(_on_topping_moved)
+	peperoner2.stapled_to.connect(_on_topping_moved)
+	musroom.stapled_to.connect(_on_topping_moved)
+	musroom2.stapled_to.connect(_on_topping_moved)
+	update_hints()
 
+func _on_topping_moved(_other: Sprite2D):
+	await get_tree().process_frame
+	update_hints()
 
-func _process(_delta):
-	if completed:
-		return
-
-	if _check_puzzle():
-		_complete_puzzle()
-
-
-func _check_puzzle() -> bool:
-	if not pizza or not peperoner or not musroom:
-		return false
-
-	# --- 1) Everything must be split ---
-	if not pizza.is_split:
-		return false
-
-	if not peperoner.is_split:
-		return false
-
-	if not musroom.is_split:
-		return false
-
-	# --- 2) Gather pizza halves ---
-	var pizza_halves := _get_halves(pizza)
-	if pizza_halves.size() != 2:
-		return false
-
-	# --- 3) Each topping must have halves ---
-	var pep_halves := _get_halves(peperoner)
-	var mush_halves := _get_halves(musroom)
-
-	if pep_halves.size() != 2 or mush_halves.size() != 2:
-		return false
-
-	# --- 4) Each pizza half must contain one of each topping half ---
-	for half in pizza_halves:
-		if not _has_matching_topping(half, pep_halves):
-			return false
-		if not _has_matching_topping(half, mush_halves):
-			return false
-
-	# --- 5) Toppings must be above pizza ---
-	for p in pep_halves + mush_halves:
-		if p.z_index <= pizza.z_index:
-			return false
-
-	return true
-
-
-func _get_halves(item: Sprite2D) -> Array:
-	var result := []
-
-	if item.is_split:
-		result.append(item)
-
-	for c in item.get_children():
-		if c is Sprite2D and c.is_split:
-			result.append(c)
-	return result
-
-
-func _has_matching_topping(pizza_half: Sprite2D, topping_halves: Array) -> bool:
-	for t in topping_halves:
-		# must be stapled (parented) to the pizza half
-		if t.get_parent() == pizza_half:
-			return true
-	return false
-
-
-func _hint_populate():
-	if not hint_label:
-		return
-
-	hint_label.text = \
-		"Cut the pizza and toppings.\n" + \
-		"Staple each topping half onto each pizza half.\n" + \
-		"Make sure toppings are above the pizza."
-
-
-func _complete_puzzle():
+func _complete_puzzle() -> void:
 	if completed:
 		return
 
 	completed = true
-	print("🍕 Puzzle complete! Pizza is assembled.")
-	emit_signal("puzzle_complete")
+	print("✅ Congratulations! Puzzle completed!")
+	puzzle_complete.emit()
+
+func _process(_delta):
+	if completed:
+		return
+	
+	var has_pep := _is_topping_over_pizza(peperoner) or _is_topping_over_pizza(peperoner2)
+	var has_mush := _is_topping_over_pizza(musroom) or _is_topping_over_pizza(musroom2)
+	
+	if has_pep and has_mush:
+		_complete_puzzle()
+
+func _is_topping_over_pizza(topping: Sprite2D) -> bool:
+	var pizza_rect: Rect2= pizza.get_global_rect()
+	var topping_rect  :Rect2= topping.get_global_rect()
+	return pizza_rect.intersects(topping_rect, true) and topping.z_index > pizza.z_index
+
+func update_hints():
+	var pep_status := "good" if _is_topping_over_pizza(peperoner) or _is_topping_over_pizza(peperoner2) else "none"
+	var mush_status := "good" if _is_topping_over_pizza(musroom) or _is_topping_over_pizza(musroom2) else "none"
+	
+	match [pep_status, mush_status]:
+		["good", "good"]:
+			hint_label.text = "Pizza complete!"
+		["good", "none"], ["none", "good"]:
+			hint_label.text = "One more topping needed!"
+		_:
+			hint_label.text = "Place peperoni and mushrooms on pizza."

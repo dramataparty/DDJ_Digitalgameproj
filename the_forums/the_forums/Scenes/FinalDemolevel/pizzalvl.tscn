@@ -19,12 +19,23 @@ position = Vector2(-2, -124)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_vcneh")
 script = ExtResource("4_kt0r8")
+item_id = "pizza"
 min_z_index = -5
 max_z_index = 5
 z_step = 1
 
 [node name="Peperoner" parent="PizzaPuzzle" instance=ExtResource("2_yofqs")]
 position = Vector2(198, -191)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_kt0r8")
+script = ExtResource("4_kt0r8")
+item_id = "peperoner"
+min_z_index = -5
+max_z_index = 5
+z_step = 1
+
+[node name="Peperoner2" parent="PizzaPuzzle" instance=ExtResource("2_yofqs")]
+position = Vector2(-149, -199)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_kt0r8")
 script = ExtResource("4_kt0r8")
@@ -43,6 +54,16 @@ min_z_index = -5
 max_z_index = 5
 z_step = 1
 
+[node name="Musroom2" parent="PizzaPuzzle" instance=ExtResource("2_yofqs")]
+position = Vector2(-142, -127)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_md0ts")
+script = ExtResource("4_kt0r8")
+item_id = "musroom"
+min_z_index = -5
+max_z_index = 5
+z_step = 1
+
 [node name="HintLabel" type="Label" parent="PizzaPuzzle"]
 offset_left = -119.0
 offset_top = -256.0
@@ -51,10 +72,10 @@ offset_bottom = -199.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -10
-offset_left = -383.0
-offset_top = -350.0
-offset_right = 418.0
-offset_bottom = 253.0
+offset_left = -386.0
+offset_top = -347.0
+offset_right = 415.0
+offset_bottom = 256.0
 color = Color(0.00995426, 0.696021, 0, 1)
 
 [node name="ResetlevelButton" type="Button" parent="."]

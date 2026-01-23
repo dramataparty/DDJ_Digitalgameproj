@@ -102,11 +102,11 @@ func _cut_item():
 	staple_lock = true
 	await get_tree().process_frame
 	staple_lock = false
-
+	
 	# --- safety guards ---
 	if is_split:
 		return
-
+	is_split = true   
 	if not texture:
 		return
 
@@ -257,6 +257,8 @@ func _on_area_exited(area):
 
 var _is_attaching := false
 
+
+#make sure attached items retain their individual Z index
 func _attach_item(other: Sprite2D) -> void:
 	if _is_attaching:
 		return
@@ -272,18 +274,27 @@ func _attach_item(other: Sprite2D) -> void:
 		_is_attaching = false
 		return
 
+	# Store original global position and z_index
 	var gpos := other.global_position
+	var original_z := other.z_index
+
+	# Reparent
 	other.reparent(self)
 	other.global_position = gpos
 
+	# Optional: move to connection point if it exists
 	if item_connection_point:
 		other.global_position = item_connection_point.global_position
+
+	# Restore original Z index so it doesn't inherit parent
+	other.z_index = original_z
 
 	emit_signal("stapled_to", other)
 
 	print("Stapled:", item_id, "→", other.item_id)
 
 	_is_attaching = false
+
 
 
 func get_global_rect() -> Rect2:

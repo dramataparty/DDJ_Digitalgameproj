@@ -44,9 +44,9 @@ z_step = 1
 [node name="TableCards" type="Sprite2D" parent="PokerPuzzle"]
 
 [node name="ResetlevelButton" type="Button" parent="."]
-offset_left = -37.0
-offset_top = 23.0
-offset_right = 37.0
-offset_bottom = 52.0
+offset_left = 103.0
+offset_top = 121.0
+offset_right = 199.0
+offset_bottom = 152.0
 text = "ResetLevel "
 script = ExtResource("5_bk5xa")
