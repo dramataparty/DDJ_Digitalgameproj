@@ -5,23 +5,25 @@ signal puzzle_complete
 @export var card1_path: NodePath
 @export var card2_path: NodePath
 
+@onready var pokerlabel: Label = $PokerLabel
 @onready var card1: Sprite2D = get_node_or_null(card1_path)
 @onready var card2: Sprite2D = get_node_or_null(card2_path)
 
-var completed := false
-var correct_matches := 0
+var completed: bool = false
+var correct_matches: int = 0
 
 
-func _ready():
+func _ready() -> void:
 	# Register so cut pieces can find us
 	add_to_group("puzzle")
 
 	print("Puzzle ready. Card1:", card1, "Card2:", card2)
 
 	# Connect originals (before cut)
-	if card1:
+	if card1 and card1.has_signal("stapled_to"):
 		card1.stapled_to.connect(_on_card_stapled.bind(card1))
-	if card2:
+
+	if card2 and card2.has_signal("stapled_to"):
 		card2.stapled_to.connect(_on_card_stapled.bind(card2))
 
 
@@ -64,4 +66,8 @@ func _complete_puzzle() -> void:
 
 	completed = true
 	print("✅ Congratulations! Puzzle completed!")
+
+	if pokerlabel:
+		pokerlabel.text = "Five of a Kind!\nImpossible hand — You win anyway!"
+
 	emit_signal("puzzle_complete")
