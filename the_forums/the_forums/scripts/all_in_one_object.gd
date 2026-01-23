@@ -180,6 +180,13 @@ func _cut_item():
 
 
 func init_child_nodes():
+	if has_node("Area2D"):
+		var area := $Area2D
+		if not area.area_entered.is_connected(_on_area_entered):
+			area.area_entered.connect(_on_area_entered)
+		if not area.area_exited.is_connected(_on_area_exited):
+			area.area_exited.connect(_on_area_exited)
+
 	if has_node("Area2D/CollisionShape2D"):
 		$Area2D/CollisionShape2D.shape = $Area2D/CollisionShape2D.shape.duplicate()
 
@@ -191,6 +198,7 @@ func init_child_nodes():
 		spriteactive = spriteactive.duplicate()
 
 	return self
+
 
 
 func _crop_right():
@@ -230,6 +238,9 @@ func _resize_collision_to_texture():
 ## STAPLING/Attaching items to eachother (automatically happens on drag if the object was created via a cut)
 ## =========================================================
 func _on_area_entered(area: Area2D) -> void:
+	if staple_lock:
+		return
+
 	if area.get_parent() is Sprite2D and area.get_parent() != self:
 		potential_target = area.get_parent() as Sprite2D
 
@@ -238,18 +249,47 @@ func _on_area_entered(area: Area2D) -> void:
 
 
 
+
 func _on_area_exited(area):
 	if potential_target == area.get_parent():
 		potential_target = null
 
-func _attach_item(other: Sprite2D):
-	if other.get_parent() == self:
+
+var _is_attaching := false
+
+func _attach_item(other: Sprite2D) -> void:
+	if _is_attaching:
 		return
-	var gpos = other.global_position
+	_is_attaching = true
+
+	# Prevent attaching to self or creating loops
+	if other == self or other.is_ancestor_of(self):
+		_is_attaching = false
+		return
+
+	# Already attached
+	if other.get_parent() == self:
+		_is_attaching = false
+		return
+
+	var gpos := other.global_position
 	other.reparent(self)
 	other.global_position = gpos
-	emit_signal("stapled_to", other)
+
 	if item_connection_point:
 		other.global_position = item_connection_point.global_position
 
+	emit_signal("stapled_to", other)
+
 	print("Stapled:", item_id, "→", other.item_id)
+
+	_is_attaching = false
+
+
+func get_global_rect() -> Rect2:
+	if not texture:
+		return Rect2(global_position, Vector2.ZERO)
+
+	var size := texture.get_size() * scale
+	var origin := global_position - size * 0.5
+	return Rect2(origin, size)

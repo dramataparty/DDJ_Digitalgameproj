@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bh6b1qgdv0veu"]
+[gd_scene load_steps=10 format=3 uid="uid://bh6b1qgdv0veu"]
 
 [ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="1"]
 [ext_resource type="Script" uid="uid://vi25x1wp435a" path="res://scripts/all_in_one_object.gd" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b6ffatiobhkuu" path="res://Scenes/Punch-In Level/GridCell.tscn" id="4"]
 [ext_resource type="Script" uid="uid://ci6t2u1x34h2o" path="res://Scenes/Punch-In Level/cells.gd" id="4_chcx2"]
 [ext_resource type="Texture2D" uid="uid://d2mt7nqi8cvh5" path="res://assets/gold_star.gif" id="5_ct5w8"]
+[ext_resource type="Script" uid="uid://c0gkmtpbs7on8" path="res://Scenes/FinalDemolevel/resetlevel_button.gd" id="8_j0gg2"]
 
 [sub_resource type="Theme" id="1"]
 
@@ -198,3 +199,11 @@ offset_top = 57.0
 offset_right = 462.0
 offset_bottom = 80.0
 text = "WRONG ANSWER!"
+
+[node name="ResetlevelButton" type="Button" parent="."]
+offset_left = -37.0
+offset_top = 23.0
+offset_right = 37.0
+offset_bottom = 52.0
+text = "ResetLevel "
+script = ExtResource("8_j0gg2")

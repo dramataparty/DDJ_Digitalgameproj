@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bundfh2bbu8mr"]
+[gd_scene load_steps=8 format=3 uid="uid://bundfh2bbu8mr"]
 
 [ext_resource type="Script" uid="uid://btba4dflfm7g3" path="res://Scenes/FinalDemolevel/pizzalvl.gd" id="1_25ap0"]
 [ext_resource type="PackedScene" uid="uid://bfhe50wg2mf52" path="res://assets/draggable.tscn" id="2_yofqs"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://vi25x1wp435a" path="res://scripts/all_in_one_object.gd" id="4_kt0r8"]
 [ext_resource type="Texture2D" uid="uid://ds8inaeeob1cm" path="res://assets/pprn.jpeg" id="5_kt0r8"]
 [ext_resource type="Texture2D" uid="uid://dlqx4scoa16q0" path="res://assets/msrm.jpeg" id="6_md0ts"]
+[ext_resource type="Script" uid="uid://c0gkmtpbs7on8" path="res://Scenes/FinalDemolevel/resetlevel_button.gd" id="7_md0ts"]
 
 [node name="Pizzalvl" type="Node2D"]
 position = Vector2(383, 346)
@@ -27,6 +28,7 @@ position = Vector2(198, -191)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_kt0r8")
 script = ExtResource("4_kt0r8")
+item_id = "peperoner"
 min_z_index = -5
 max_z_index = 5
 z_step = 1
@@ -36,14 +38,29 @@ position = Vector2(198, -121)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_md0ts")
 script = ExtResource("4_kt0r8")
+item_id = "musroom"
 min_z_index = -5
 max_z_index = 5
 z_step = 1
 
+[node name="HintLabel" type="Label" parent="PizzaPuzzle"]
+offset_left = -119.0
+offset_top = -256.0
+offset_right = 111.0
+offset_bottom = -199.0
+
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -10
 offset_left = -383.0
-offset_top = -349.0
+offset_top = -350.0
 offset_right = 418.0
-offset_bottom = 254.0
+offset_bottom = 253.0
 color = Color(0.00995426, 0.696021, 0, 1)
+
+[node name="ResetlevelButton" type="Button" parent="."]
+offset_left = -37.0
+offset_top = 23.0
+offset_right = 37.0
+offset_bottom = 52.0
+text = "ResetLevel "
+script = ExtResource("7_md0ts")
