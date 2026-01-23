@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk0oc1t5ywag5"]
+[gd_scene load_steps=7 format=3 uid="uid://bk0oc1t5ywag5"]
 
 [ext_resource type="Texture2D" uid="uid://cby1mfoxmwnsj" path="res://ui/monitor.png" id="1_w8lkc"]
 [ext_resource type="Script" uid="uid://bukwa2ipxynb4" path="res://scripts/mouse_mode_selection.gd" id="3_dw3bs"]
 [ext_resource type="Script" uid="uid://cgo2oa07ll2va" path="res://scripts/browser.gd" id="3_tvs07"]
 [ext_resource type="Script" uid="uid://c0gkmtpbs7on8" path="res://Scenes/FinalDemolevel/resetlevel_button.gd" id="4_tvs07"]
+[ext_resource type="Script" uid="uid://u5dnle31fifl" path="res://Scenes/back_button.gd" id="5_dw3bs"]
+[ext_resource type="Script" uid="uid://xuowq8lcds1n" path="res://Scenes/forward.gd" id="6_c5ivj"]
 
 [node name="Screen" type="Node2D"]
 
@@ -62,6 +64,27 @@ offset_right = 230.0
 offset_bottom = -27.0
 text = "ResetLevel "
 script = ExtResource("4_tvs07")
+
+[node name="Back" type="Button" parent="."]
+visible = false
+z_index = 25
+offset_left = 10.0
+offset_top = -58.0
+offset_right = 85.0
+offset_bottom = -27.0
+text = "<- Back
+"
+script = ExtResource("5_dw3bs")
+
+[node name="Forward" type="Button" parent="."]
+visible = false
+z_index = 25
+offset_left = 90.0
+offset_top = -58.0
+offset_right = 127.0
+offset_bottom = -27.0
+text = "->"
+script = ExtResource("6_c5ivj")
 
 [connection signal="item_selected" from="OptionButton" to="OptionButton" method="_on_item_selected"]
 [connection signal="timeout" from="WebPage/Timer" to="WebPage" method="_on_timer_timeout"]
