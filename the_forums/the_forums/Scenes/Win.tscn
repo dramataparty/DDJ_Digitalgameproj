@@ -23,9 +23,10 @@ theme_override_fonts/bold_italics_font = ExtResource("4_o6xvn")
 theme_override_fonts/bold_font = ExtResource("5_bt77o")
 bbcode_enabled = true
 text = "[color=#000000]
-[font_size=36][b]Thank you for playing through the tutorial![/b][/font_size]
+[font_size=36][b]Thank you for playing through the demo!![/b][/font_size]
 
 Please await patiently for the full release.
+Or don't. I don't care.
 [/color]
 
 "

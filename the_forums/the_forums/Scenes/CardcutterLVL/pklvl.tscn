@@ -66,6 +66,7 @@ You Have: Two Of a Kind!
 Sorry!, You Lose!"
 
 [node name="nextButton" type="Button" parent="."]
+visible = false
 offset_left = 256.0
 offset_top = -118.0
 offset_right = 384.0

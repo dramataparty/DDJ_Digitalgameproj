@@ -251,8 +251,8 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 
 	# Must actually have is_split property
-	if not other.has_variable("is_split"):
-		return
+	#if not other.has_variable("is_split"):
+	#	return
 
 	potential_target = other
 

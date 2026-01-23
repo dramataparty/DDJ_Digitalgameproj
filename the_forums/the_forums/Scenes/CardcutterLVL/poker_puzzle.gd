@@ -50,9 +50,9 @@ func _is_correct_match(a: Sprite2D, b: Sprite2D) -> bool:
 		return false
 
 	if (
-		a.item_id == "card_1_rh" and b.item_id == "card_2_lh"
+		(a.item_id == "card_1_rh" and b.item_id == "card_2_lh") or (b.item_id == "card_1_rh" and a.item_id == "card_2_lh")
 	) or (
-		a.item_id == "card_2_rh" and b.item_id == "card_1_lh"
+		(a.item_id == "card_2_rh" and b.item_id == "card_1_lh") or (b.item_id == "card_2_rh" and a.item_id == "card_1_lh")
 	):
 		return true
 

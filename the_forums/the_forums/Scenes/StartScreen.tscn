@@ -15,6 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ey7n4")
+next_scene = "res://Scenes/Sports/Sports.tscn"
 progression_options = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
